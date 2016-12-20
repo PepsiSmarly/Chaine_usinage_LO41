@@ -11,6 +11,11 @@
  *   de la pièce de se préparer
  */
 
+#ifndef SUPERVISOR_H
+#define SUPERVISOR_H
+
+#include <stdlib.h>
+
 /**
  * Les différents états possibles du système
  */
@@ -21,3 +26,8 @@ typedef struct
     SystemState sys_state;
 }
 Supervisor;
+
+Supervisor* supervisor_Create();
+void supervisor_Destroy(Supervisor* _supervisor);
+
+#endif
