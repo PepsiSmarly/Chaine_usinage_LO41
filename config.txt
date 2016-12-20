@@ -1,0 +1,4 @@
+prenom = Thomas
+nom = Gredin
+age = 20
+taille = 183
