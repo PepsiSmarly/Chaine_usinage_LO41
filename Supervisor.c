@@ -15,3 +15,13 @@ void supervisor_Destroy(Supervisor* _supervisor)
         return;
     free(_supervisor);
 }
+
+int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece)
+{
+
+}
+
+int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece)
+{
+
+}

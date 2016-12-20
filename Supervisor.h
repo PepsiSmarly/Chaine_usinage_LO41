@@ -16,6 +16,9 @@
 
 #include <stdlib.h>
 
+#include "Piece.h"
+#include "FactoryTable.h"
+
 /**
  * Les différents états possibles du système
  */
@@ -24,10 +27,18 @@ typedef enum { OK, ERROR } SystemState;
 typedef struct
 {
     SystemState sys_state;
+
+    FactoryTable* table1;
+    FactoryTable* table2;
+    FactoryTable* table3;
 }
 Supervisor;
 
-Supervisor* supervisor_Create();
-void supervisor_Destroy(Supervisor* _supervisor);
+Supervisor*     supervisor_Create();
+void            supervisor_Destroy(Supervisor* _supervisor);
+
+int             supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece);
+int             supervisor_DetermineFactoryTable(Supervisor* _supervisor,
+                                                    Piece* _piece);
 
 #endif

@@ -27,3 +27,7 @@ Les objets possèdent différentes fonctions qui sont les suivantes:
     sur le Convoyeur
     - Demande à la machine de traitement concerné par l'arrivée
     de la pièce de se préparer
+
+#### Questions !?
+- Faut-il mettre les tables d'usinage dans le Superviseur ?
+- Faut-il créer un conteneur (Liste chainée), pour les table d'usinage ?
