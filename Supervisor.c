@@ -26,3 +26,8 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece)
 {
 
 }
+
+void supervisor_changeConvoyerState(Supervisor* _supervisor, int _state)
+{
+    _supervisor->convoyer_state = _state;
+}
