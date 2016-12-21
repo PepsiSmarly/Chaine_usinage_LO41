@@ -15,6 +15,8 @@
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec
  * la méthode des tables d'usinage (FactoryTable)
+ *
+ *
  */
 typedef struct
 {
@@ -22,8 +24,8 @@ typedef struct
     Convoyer*           convoyer;
     Supervisor*         supervisor;
 
-    pthread_cond_t      is_piece_append;
-    pthread_mutex_t     padlock;
+    pthread_cond_t*     is_piece_append;
+    pthread_mutex_t*    padlock;
 }
 FactoryTable_Args;
 
@@ -36,5 +38,18 @@ void* supervisor_Thread(void* args);
 void* robot_loader_Thread(void* args);
 void* robot_unloader_Thread(void* args);
 void* convoyer_Thread(void* args);
+
+/**
+ * Permet d'initialiser tous les éléments
+ * @param  _factoryTable la table concernée
+ * @param  _supervisor   le superviseur du système
+ * @param  _convoyer     le convoyeur du système
+ * @return               l'argument complété
+ */
+FactoryTable_Args* factoryTable_Args_Create(
+    FactoryTable*   _factoryTable,
+    Supervisor*     _supervisor,
+    Convoyer*       _convoyer
+);
 
 #endif
