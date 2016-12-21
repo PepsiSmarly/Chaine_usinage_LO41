@@ -9,13 +9,21 @@
 #define THREAD_METHODS_H
 
 #include "Supervisor.h"
+#include "Convoyer.h"
 #include <pthread.h>
 
+/**
+ * Structure à utiliser en argument lors de l'utilisation de pthread_create avec
+ * la méthode des tables d'usinage (FactoryTable)
+ */
 typedef struct
 {
-    FactoryTable* factoryTable;
+    FactoryTable*       factoryTable;
+    Convoyer*           convoyer;
+    Supervisor*         supervisor;
 
-    pthread_cond_t is_piece_append;
+    pthread_cond_t      is_piece_append;
+    pthread_mutex_t     padlock;
 }
 FactoryTable_Args;
 
