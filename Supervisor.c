@@ -5,6 +5,7 @@ Supervisor* supervisor_Create()
     Supervisor* s = malloc(sizeof(Supervisor));
 
     s->sys_state = OK;
+    s->sys_state = CONVOYER_FREE;
 
     return s;
 }

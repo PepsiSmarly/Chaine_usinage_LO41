@@ -12,8 +12,22 @@
 
 #include "Piece.h"
 
+/**
+ * Position donnée au convoyeur quand il ne porte pas de pièce
+ */
 #define CONVOYER_NO_PIECE_POS   0
+
+/**
+ * Nombre de pièce que peut transporter le convoyeur en même temps
+ */
 #define CONVOYER_CAPACITY       1
+
+/**
+ * Pour indiquer si le convoyeur est prit ou lacher lors de chargement
+ * déchargement
+ */
+#define CONVOYER_TAKE 0
+#define CONVOYER_FREE 1
 
 /**
  * Structure qui représente le convoyer

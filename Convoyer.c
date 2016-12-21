@@ -12,5 +12,9 @@ Convoyer* convoyer_Create()
 
 void convoyer_Destroy(Convoyer* _convoyer)
 {
+    if(_convoyer == NULL)
+        return;
 
+    sem_destroy(&_convoyer->padlock);
+    free(_convoyer);
 }

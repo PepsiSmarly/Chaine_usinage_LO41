@@ -21,7 +21,14 @@ void factoryTable_Destroy(FactoryTable* _ft)
     free(_ft);
 }
 
-int factoryTable_PutPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _convoyer)
+int factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _convoyer)
+{
+
+}
+
+void factoryTable_SignalConvoyerToSupervisor(FactoryTable* _factoryTable,
+                                            Supervisor* _supervisor,
+                                            int _code)
 {
     
 }

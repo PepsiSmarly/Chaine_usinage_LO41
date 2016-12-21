@@ -27,10 +27,7 @@ typedef enum { OK, ERROR } SystemState;
 typedef struct
 {
     SystemState sys_state;
-
-    FactoryTable* table1;
-    FactoryTable* table2;
-    FactoryTable* table3;
+    int convoyer_state;
 }
 Supervisor;
 

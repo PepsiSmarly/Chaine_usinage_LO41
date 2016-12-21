@@ -9,6 +9,8 @@
 
 #include <stdlib.h>
 
+#include "Convoyer.h"
+
 /**
  * Structure qui représente une table d'usinage
  *
@@ -56,5 +58,10 @@ void            factoryTable_Destroy(FactoryTable* _ft);
  * @return               FACTORYTABLE_TRUE si succès et FACTORYTABLE_FALSE si
  *                       échec
  */
-int             factoryTable_PutPieceOnConvoyer(FactoryTable* _factoryTable,
-                                                Convoyer* _convoyer);
+int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
+                                Convoyer* _convoyer);
+
+void            factoryTable_SignalConvoyerToSupervisor(
+                                FactoryTable* _factoryTable,
+                                Supervisor* _supervisor,
+                                int _code);
