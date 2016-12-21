@@ -8,6 +8,7 @@ FactoryTable* factoryTable_Create(int _process_code, int _position)
     ft->position = _position;
     ft->process_code = _process_code;
     ft->is_brocken = FACTORYTABLE_FALSE;
+    ft->is_ready = FACTORYTABLE_FALSE;
 
     return ft;
 }

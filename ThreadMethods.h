@@ -9,7 +9,20 @@
 #define THREAD_METHODS_H
 
 #include "Supervisor.h"
+#include <pthread.h>
 
+typedef struct
+{
+    FactoryTable* factoryTable;
+
+    pthread_cond_t is_piece_append;
+}
+FactoryTable_Args;
+
+/**
+ * Thread des tables d'usinage
+ * @param args arguments
+ */
 void* factoryTable_Thread(void* args);
 void* supervisor_Thread(void* args);
 void* robot_loader_Thread(void* args);

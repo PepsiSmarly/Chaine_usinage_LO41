@@ -26,6 +26,7 @@ typedef struct
     int process_code;
     int is_in_process;
     int is_brocken;
+    int is_ready;
 
     int position;
 }
