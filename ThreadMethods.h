@@ -52,4 +52,10 @@ FactoryTable_Args* factoryTable_Args_Create(
     Convoyer*       _convoyer
 );
 
+/**
+ * Détruire les arguments
+ * @param _ft_Args les arguments à détruire
+ */
+void factoryTable_Args_Destroy(FactoryTable_Args* _ft_Args);
+
 #endif

@@ -20,3 +20,8 @@ void factoryTable_Destroy(FactoryTable* _ft)
 
     free(_ft);
 }
+
+int factoryTable_PutPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _convoyer)
+{
+    
+}

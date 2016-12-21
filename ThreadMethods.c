@@ -18,5 +18,15 @@ FactoryTable_Args* factoryTable_Args_Create(
     ft_args->supervisor = _supervisor;
     ft_args->convoyer = _convoyer;
 
-    pthread_cond_init(ft_args->is_piece_append, NULL);
+    pthread_mutex_init(ft_args->padlock, 0);
+    pthread_cond_init(ft_args->is_piece_append, 0);
+
+    return ft_args;
+}
+
+void factoryTable_Args_Destroy(FactoryTable_Args* _ft_Args)
+{
+    if(_ft_Args == NULL)
+        return;
+    free(_ft_Args);
 }

@@ -46,3 +46,15 @@ FactoryTable*   factoryTable_Create(int _process_code, int _position);
  * @param  _ft table d'usinage à détruire
  */
 void            factoryTable_Destroy(FactoryTable* _ft);
+
+/**
+ * Permet de charger une pièce provenant d'une table d'usinage sur le convoyeur
+ * donnée tout en vérifiant bien que ce dernier est disponible pour recevoir et
+ * transporter une pièce
+ * @param  _factoryTable table d'usinage à décharger
+ * @param  _convoyer     convoyeur sur lequel charger la pièce
+ * @return               FACTORYTABLE_TRUE si succès et FACTORYTABLE_FALSE si
+ *                       échec
+ */
+int             factoryTable_PutPieceOnConvoyer(FactoryTable* _factoryTable,
+                                                Convoyer* _convoyer);
