@@ -9,6 +9,7 @@ SOURCES += Piece.c
 SOURCES += Robot.c
 SOURCES += Supervisor.c
 SOURCES += Array.c
+SOURCES += ThreadMethods.c
 
 CXX = gcc
 NAME = usine
