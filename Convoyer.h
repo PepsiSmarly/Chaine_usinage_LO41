@@ -17,12 +17,13 @@
 /**
  * Position donnée au convoyeur quand il ne porte pas de pièce
  */
-#define CONVOYER_NO_PIECE_POS   0
+#define CONVOYER_NO_PIECE_POS   -1
 
 /**
  * Nombre de pièce que peut transporter le convoyeur en même temps
  */
 #define CONVOYER_CAPACITY       1
+#define CONVOYER_SPEED          2
 
 /**
  * Pour indiquer si le convoyeur est prit ou lacher lors de chargement
@@ -62,5 +63,11 @@ int         convoyer_Use(Convoyer* _convoyer, int _timeout_s);
  * @param  _convoyer le convoyeur à libérer
  */
 void        convoyer_Free(Convoyer* _convoyer);
+
+/**
+ * Permet de bouger le convoyer par sa vitesse
+ * @param  _convoyer le convoyeur à faire tourner
+ */
+void        convoyer_Move(Convoyer* _convoyer);
 
 #endif

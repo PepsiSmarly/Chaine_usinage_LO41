@@ -35,3 +35,13 @@ void convoyer_Free(Convoyer* _convoyer)
 {
     sem_post(&_convoyer->padlock);
 }
+
+void convoyer_Move(Convoyer* _convoyer)
+{
+    if(_convoyer->position == -1)
+    {
+        return;
+    }
+
+    _convoyer->position += CONVOYER_SPEED;
+}

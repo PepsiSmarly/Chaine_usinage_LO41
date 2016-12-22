@@ -15,7 +15,7 @@ void robot_Destroy(Robot* _robot)
     free(_robot);
 }
 
-int robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer)
+int robot_LoadConvoyer(Robot* _robot, Convoyer* _convoyer)
 {
     int result = convoyer_Use(_convoyer, 20);
 
@@ -25,11 +25,12 @@ int robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer)
     }
 
     _convoyer->loaded_piece = _robot->piece;
+    convoyer_Free(_convoyer);
     _robot->piece = NULL;
     return ROBOT_SUCCESS;
 }
 
-int robot_unloadConvoyer(Robot* _robot, Convoyer* _convoyer)
+int robot_UnloadConvoyer(Robot* _robot, Convoyer* _convoyer)
 {
 
 }

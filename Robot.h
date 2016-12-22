@@ -36,7 +36,7 @@ void    robot_Destroy(Robot* _robot);
  * @return           ROBOT_SUCCESS en cas de succès de chargement
  *                   ROBOT_FAIL en cas d'impossibilité de charger
  */
-int     robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer);
+int     robot_LoadConvoyer(Robot* _robot, Convoyer* _convoyer);
 
 /**
  * Permet de décherger une pièce se trouvant sur le convoyeur
@@ -45,6 +45,6 @@ int     robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer);
  * @return           ROBOT_SUCCESS si le déchargement est un succès
  *                   ROBOT_FAIL si le déchargement est un échec
  */
-int     robot_unloadConvoyer(Robot* _robot, Convoyer* _convoyer);
+int     robot_UnloadConvoyer(Robot* _robot, Convoyer* _convoyer);
 
 #endif
