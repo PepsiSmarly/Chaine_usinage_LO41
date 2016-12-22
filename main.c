@@ -8,6 +8,7 @@
 #define SYSTEME_RUN_FALSE   0
 
 #include "Config.h"
+#include "Network.h"
 
 int main(int argc, char const *argv[])
 {
