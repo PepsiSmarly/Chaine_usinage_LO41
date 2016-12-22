@@ -64,6 +64,18 @@ accessible seulement dans un seul thread...)
         - Donner l'ordre au robot d'alimentation de charger la pièce sur
         le convoyeur
 
+- Fonctionnement du Convoyeur :
+    - tourner en permanence, c'est tout
+
+- Table qui à été notifié de l'arrivée d'une pièce :
+    - attente active en scrutant le convoyeur
+    - quand la pièce sur le convoyeur se trouve au niveau de la table
+    d'usinage, ramassage de la pièce (laisser une fourchette pour le
+    ramassage)
+    - traiter la pièce
+    - remettre la pièce sur le tapis
+    - se rendormir en attendant d'être de nouveau réveillé par le Superviseur
+
 ### TODO
 - Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
 - Mettre en place les threads
