@@ -1,4 +1,3 @@
-prenom = Thomas
-nom = Gredin
-age = 20
-taille = 183
+pos_table_1 = 25
+pos_table_2 = 50
+pos_table_3 = 75

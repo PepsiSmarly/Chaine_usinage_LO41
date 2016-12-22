@@ -15,20 +15,21 @@
 
 void clean_up();
 
-Network* network;
+Config* config;
 
+Network* network;
 Supervisor* supervisor;
 Convoyer* convoyer;
-
 FactoryTable* table_1;
 FactoryTable* table_2;
 FactoryTable* table_3;
-
 Robot* robot_loader;
 Robot* robot_unloader;
 
 int main(int argc, char const *argv[])
 {
+    config = config_Create("config.txt");
+
     network = network_Create();
     printf("network create\n");
 
@@ -37,11 +38,14 @@ int main(int argc, char const *argv[])
     convoyer = convoyer_Create();
     printf("convoyer create\n");
 
-    table_1 = factoryTable_Create(FACTORY_PROCESS_CODE_1, FACTORYTABLE_POS_1);
+    table_1 = factoryTable_Create(FACTORY_PROCESS_CODE_1,
+        atoi(config_GetField(config, "pos_table_1")));
     printf("table 1 create\n");
-    table_2 = factoryTable_Create(FACTORY_PROCESS_CODE_2, FACTORYTABLE_POS_2);
+    table_2 = factoryTable_Create(FACTORY_PROCESS_CODE_2,
+        atoi(config_GetField(config, "pos_table_2")));
     printf("table 2 create\n");
-    table_3 = factoryTable_Create(FACTORY_PROCESS_CODE_3, FACTORYTABLE_POS_3);
+    table_3 = factoryTable_Create(FACTORY_PROCESS_CODE_3,
+        atoi(config_GetField(config, "pos_table_3")));
     printf("table 3 create\n");
 
     robot_loader = robot_Create();

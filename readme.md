@@ -63,3 +63,8 @@ accessible seulement dans un seul thread...)
         - Notifier la table pour qu'elle se prépare à recevoir la pièce
         - Donner l'ordre au robot d'alimentation de charger la pièce sur
         le convoyeur
+
+### TODO
+- Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
+- Mettre en place les threads
+- voire quoi mettre dans le fichier de configuration
