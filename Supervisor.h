@@ -19,22 +19,9 @@
 
 #include <stdlib.h>
 
+#include "Objects.h"
 #include "Piece.h"
 #include "Network.h"
-
-/**
- * Les différents états possibles du système
- */
-typedef enum { OK, ERROR } SystemState;
-
-typedef struct
-{
-    SystemState sys_state;
-    int convoyer_state;
-
-    FactoryTable* last_target;
-}
-Supervisor;
 
 /**
  * Créer un Supervisor

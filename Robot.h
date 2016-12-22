@@ -10,14 +10,9 @@
 #define ROBOT_SUCCESS   1
 #define ROBOT_FAIL      0
 
+#include "Objects.h"
 #include "Piece.h"
 #include "Convoyer.h"
-
-typedef struct
-{
-    Piece* piece;
-}
-Robot;
 
 /**
  * Constructeur de Robot

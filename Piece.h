@@ -7,14 +7,8 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+#include "Objects.h"
 #include "FactoryTable.h"
-
-typedef struct
-{
-    int id;
-    int process_code;
-}
-Piece;
 
 /**
  * Pour construire une pièce

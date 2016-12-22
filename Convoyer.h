@@ -7,9 +7,11 @@
 #ifndef CONVOYER_H
 #define CONVOYER_H
 
+#include <time.h>
 #include <semaphore.h>
 #include <stdlib.h>
 
+#include "Objects.h"
 #include "Piece.h"
 
 /**
@@ -26,25 +28,11 @@
  * Pour indiquer si le convoyeur est prit ou lacher lors de chargement
  * déchargement
  */
-#define CONVOYER_TAKE 0
 #define CONVOYER_FREE 1
+#define CONVOYER_TAKE 0
 
-/**
- * Structure qui représente le convoyer
- *
- * position     : position actuelle de la pièce se trouvant sur le convoyer si
- *                si pièce il y à
- * loaded_piece : pièce actuellement chargé sur le convoyeur si elle existe
- *                sinon la valeur est sur NULL
- */
-typedef struct
-{
-    int position;
-    Piece* loaded_piece;
-
-    sem_t padlock;
-}
-Convoyer;
+#define CONVOYER_SUCCESS    1
+#define CONVOYER_FAIL       0
 
 /**
  * Créer un convoyer
@@ -61,8 +49,11 @@ void        convoyer_Destroy(Convoyer* _convoyer);
 /**
  * Permet de monopoliser le convoyeur
  * @param  _convoyer le convoyeur à monopoliser
+ * @return           CONVOYER_SUCCESS si pas de problème
+ *                   CONVOYER_FAIL si problème ou si ça fait 20 secondes que
+ *                   l'on attend
  */
-void        convoyer_Use(Convoyer* _convoyer);
+int         convoyer_Use(Convoyer* _convoyer);
 
 /**
  * Permet de libérer le convoyeur de la monopolisation pour permettre aux

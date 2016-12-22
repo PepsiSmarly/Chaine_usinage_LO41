@@ -4,6 +4,9 @@
  * Représente les tables d'usinage
  */
 
+#ifndef FACTORY_TABLE_H
+#define FACTORY_TABLE_H
+
 #define FACTORYTABLE_TRUE   1
 #define FACTORYTABLE_FALSE  0
 
@@ -20,32 +23,8 @@
 #include "pthread.h"
 
 #include "Convoyer.h"
-
-/**
- * Structure qui représente une table d'usinage
- *
- * process_code     : code qui détermine la nature du traitement de la machine
- * is_in_process    : la valeur varie si la machine est en train de traiter une
- *                    pièce ou non
- * is_brocken       : la valeur varie si la machine est en panne ou non
- * position         : position ou doit se trouver la pièce sur le tapis pour que
- *                    la table d'usinage puisse la récupérer et la traiter, c'est
- *                    également l'endroit ou elle sera déposé à la fin du
- *                    traitement
- */
-typedef struct
-{
-    int process_code;
-    int is_in_process;
-    int is_brocken;
-    int is_ready;
-
-    int position;
-
-    pthread_cond_t*     is_piece_append;
-    pthread_mutex_t*    padlock;
-}
-FactoryTable;
+#include "Supervisor.h"
+#include "Piece.h"
 
 /**
  * Créer une Table d'usinage
@@ -89,7 +68,9 @@ void            factoryTable_SignalConvoyerToSupervisor(
 /**
  * Permet de "réveiller" la table d'usinage pour l'arriver d'une pièce à traiter
  * @param  _factoryTable la table à réveiller
- * @return               FACTORYTABLE_TRUE en cas de succès, 
+ * @return               FACTORYTABLE_TRUE en cas de succès,
  *                       FACTORYTABLE_FALSE dans les autres cas
  */
 int             factoryTable_WakeUp(FactoryTable* _factoryTable);
+
+#endif

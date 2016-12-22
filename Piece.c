@@ -12,7 +12,7 @@ Piece* piece_Create(int _id, int _process_code)
 
 void piece_Destroy(Piece* _piece)
 {
-    if(p == NULL)
+    if(_piece == NULL)
         return;
 
     free(_piece);

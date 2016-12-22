@@ -35,7 +35,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
             return SUPERVISOR_FAIL;
         }
 
-        
+
         return SUPERVISOR_SUCCESS;
     }
     else
@@ -49,17 +49,17 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
     int code = _piece->process_code;
 
     switch (code) {
-        case _network->table_process_1->process_code:
+        case FACTORY_PROCESS_CODE_1:
         {
             _supervisor->last_target = _network->table_process_1;
             break;
         }
-        case _network->table_process_2->process_code:
+        case FACTORY_PROCESS_CODE_2:
         {
             _supervisor->last_target = _network->table_process_2;
             break;
         }
-        case _network->table_process_3->process_code:
+        case FACTORY_PROCESS_CODE_3:
         {
             _supervisor->last_target = _network->table_process_3;
             break;

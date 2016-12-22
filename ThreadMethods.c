@@ -2,7 +2,7 @@
 
 void* factoryTable_Thread(void* args)
 {
-    FactoryTable_Args* args = (FactoryTable_Args*)args;
+    FactoryTable_Args* arg = (FactoryTable_Args*)args;
 
 }
 

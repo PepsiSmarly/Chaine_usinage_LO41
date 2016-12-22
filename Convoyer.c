@@ -7,7 +7,7 @@ Convoyer* convoyer_Create()
     c->loaded_piece = NULL;
     c->position = CONVOYER_NO_PIECE_POS;
 
-    sem_init(c->padlock, 0, CONVOYER_CAPACITY);
+    sem_init(&c->padlock, 0, CONVOYER_CAPACITY);
 }
 
 void convoyer_Destroy(Convoyer* _convoyer)
@@ -19,12 +19,15 @@ void convoyer_Destroy(Convoyer* _convoyer)
     free(_convoyer);
 }
 
-void convoyer_Use(Convoyer* _convoyer)
+int convoyer_Use(Convoyer* _convoyer)
 {
 
+
+    int result = sem_wait(&_convoyer->padlock);
+    return CONVOYER_SUCCESS;
 }
 
 void convoyer_Free(Convoyer* _convoyer)
 {
-
+    sem_post(&_convoyer->padlock);
 }
