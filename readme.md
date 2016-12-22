@@ -61,3 +61,5 @@ accessible seulement dans un seul thread...)
         - Parcourir les tables présentent et faire le lien entre le code
         d'usinage de la pièce et la table d'usinage
         - Notifier la table pour qu'elle se prépare à recevoir la pièce
+        - Donner l'ordre au robot d'alimentation de charger la pièce sur
+        le convoyeur

@@ -29,7 +29,11 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
             return SUPERVISOR_FAIL;
         }
 
-        
+        result = factoryTable_WakeUp(_supervisor->last_target);
+        if(result == FACTORYTABLE_FALSE)
+        {
+            return SUPERVISOR_FAIL;
+        }
         return SUPERVISOR_SUCCESS;
     }
     else

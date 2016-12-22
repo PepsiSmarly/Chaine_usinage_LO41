@@ -8,7 +8,7 @@
 
 typedef struct
 {
-    Piece* loaded_piece;
+    Piece* piece;
 }
 Robot;
 
