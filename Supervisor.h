@@ -21,6 +21,7 @@
 
 #include "Objects.h"
 #include "Piece.h"
+#include "Robot.h"
 #include "Network.h"
 
 /**

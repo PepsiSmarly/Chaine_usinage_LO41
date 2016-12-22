@@ -35,7 +35,11 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
             return SUPERVISOR_FAIL;
         }
 
-
+        result = robot_loadConvoyer(_network->robot_loader, _network->convoyer);
+        if(result == ROBOT_FAIL)
+        {
+            return SUPERVISOR_FAIL;
+        }
         return SUPERVISOR_SUCCESS;
     }
     else
