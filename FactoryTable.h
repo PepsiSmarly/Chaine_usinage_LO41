@@ -19,6 +19,10 @@
 #define FACTORY_PROCESS_CODE_2 20
 #define FACTORY_PROCESS_CODE_3 30
 
+#define FACTORYTABLE_POS_1 25
+#define FACTORYTABLE_POS_2 50
+#define FACTORYTABLE_POS_3 75
+
 #include <stdlib.h>
 #include "pthread.h"
 

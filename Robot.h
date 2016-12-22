@@ -10,6 +10,9 @@
 #define ROBOT_SUCCESS   1
 #define ROBOT_FAIL      0
 
+#define ROBOT_LOADER_POS    0
+#define ROBOT_UNLOADER_POS  100
+
 #include "Objects.h"
 #include "Piece.h"
 #include "Convoyer.h"
