@@ -18,3 +18,13 @@ void convoyer_Destroy(Convoyer* _convoyer)
     sem_destroy(&_convoyer->padlock);
     free(_convoyer);
 }
+
+void convoyer_Use(Convoyer* _convoyer)
+{
+
+}
+
+void convoyer_Free(Convoyer* _convoyer)
+{
+
+}

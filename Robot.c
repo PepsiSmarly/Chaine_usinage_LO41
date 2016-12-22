@@ -15,3 +15,13 @@ void robot_Destroy(Robot* _robot)
 
     free(_robot);
 }
+
+int robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer)
+{
+
+}
+
+int robot_unloadConvoyer(Robot* _robot, Convoyer* _convoyer)
+{
+    
+}

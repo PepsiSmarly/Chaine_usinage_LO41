@@ -58,4 +58,17 @@ Convoyer*   convoyer_Create();
  */
 void        convoyer_Destroy(Convoyer* _convoyer);
 
+/**
+ * Permet de monopoliser le convoyeur
+ * @param  _convoyer le convoyeur à monopoliser
+ */
+void        convoyer_Use(Convoyer* _convoyer);
+
+/**
+ * Permet de libérer le convoyeur de la monopolisation pour permettre aux
+ * autres de l'utiliser
+ * @param  _convoyer le convoyeur à libérer
+ */
+void        convoyer_Free(Convoyer* _convoyer);
+
 #endif
