@@ -8,10 +8,11 @@
 #ifndef THREAD_METHODS_H
 #define THREAD_METHODS_H
 
+#include <pthread.h>
+
 #include "Supervisor.h"
 #include "Convoyer.h"
 #include "Network.h"
-#include <pthread.h>
 
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec
@@ -23,9 +24,6 @@ typedef struct
 {
     FactoryTable*       factoryTable;
     Network*            network;
-
-    pthread_cond_t*     is_piece_append;
-    pthread_mutex_t*    padlock;
 }
 FactoryTable_Args;
 

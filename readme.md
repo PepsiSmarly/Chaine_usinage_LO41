@@ -29,10 +29,10 @@ Les objets possèdent différentes fonctions qui sont les suivantes:
     de la pièce de se préparer
 
 #### Questions !?
-- [ ] Faut-il mettre les tables d'usinage dans le Superviseur ?
-- [ ] Faut-il créer un conteneur (Liste chainée), pour les table d'usinage ?
+- [ ] ~~Faut-il mettre les tables d'usinage dans le Superviseur ?~~
+- [ ] ~~Faut-il créer un conteneur (Liste chainée), pour les table d'usinage ?~~
 
-- [ ] Faut-il conserver les méthodes des tables d'usinage dans leur structure ?
+- [ ] ~~Faut-il conserver les méthodes des tables d'usinage dans leur structure ?~~
 
 - [X] Créer une sorte de super Structure portant le nom de System et
 contenant tout le système pour pouvoir l'orchestrer !? (Nommé Network dans

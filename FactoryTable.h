@@ -17,6 +17,7 @@
 #define FACTORY_PROCESS_CODE_3 30
 
 #include <stdlib.h>
+#include "pthread.h"
 
 #include "Convoyer.h"
 
@@ -40,6 +41,9 @@ typedef struct
     int is_ready;
 
     int position;
+
+    pthread_cond_t*     is_piece_append;
+    pthread_mutex_t*    padlock;
 }
 FactoryTable;
 
@@ -56,7 +60,7 @@ FactoryTable*   factoryTable_Create(int _process_code, int _position);
  * Détruire la table d'usinage
  * @param  _ft table d'usinage à détruire
  */
-void            factoryTable_Destroy(FactoryTable* _ft);
+void            factoryTable_Destroy(FactoryTable* _factoryTable);
 
 /**
  * Permet de charger une pièce provenant d'une table d'usinage sur le convoyeur
@@ -81,3 +85,11 @@ void            factoryTable_SignalConvoyerToSupervisor(
                                 FactoryTable* _factoryTable,
                                 Supervisor* _supervisor,
                                 int _code);
+
+/**
+ * Permet de "réveiller" la table d'usinage pour l'arriver d'une pièce à traiter
+ * @param  _factoryTable la table à réveiller
+ * @return               FACTORYTABLE_TRUE en cas de succès, 
+ *                       FACTORYTABLE_FALSE dans les autres cas
+ */
+int             factoryTable_WakeUp(FactoryTable* _factoryTable);
