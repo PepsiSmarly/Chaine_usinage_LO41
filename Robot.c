@@ -4,7 +4,6 @@ Robot* robot_Create()
 {
     Robot* r = malloc(sizeof(Robot));
 
-    r->piece = NULL;
     return r;
 }
 
@@ -23,5 +22,5 @@ int robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer)
 
 int robot_unloadConvoyer(Robot* _robot, Convoyer* _convoyer)
 {
-    
+
 }

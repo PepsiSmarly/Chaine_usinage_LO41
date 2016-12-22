@@ -6,7 +6,6 @@ Supervisor* supervisor_Create()
 
     s->sys_state = OK;
     s->sys_state = CONVOYER_FREE;
-    s->last_target = NULL;
 
     return s;
 }
@@ -15,6 +14,7 @@ void supervisor_Destroy(Supervisor* _supervisor)
 {
     if(_supervisor == NULL)
         return;
+
     free(_supervisor);
 }
 

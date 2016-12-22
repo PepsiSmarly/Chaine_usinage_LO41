@@ -35,8 +35,8 @@ typedef struct
 
     int position;
 
-    pthread_cond_t*     is_piece_append;
-    pthread_mutex_t*    padlock;
+    pthread_cond_t     is_piece_append;
+    pthread_mutex_t    padlock;
 }
 FactoryTable;
 

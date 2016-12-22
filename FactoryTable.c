@@ -10,8 +10,8 @@ FactoryTable* factoryTable_Create(int _process_code, int _position)
     ft->is_brocken = FACTORYTABLE_FALSE;
     ft->is_ready = FACTORYTABLE_FALSE;
 
-    pthread_mutex_init(ft->padlock, 0);
-    pthread_cond_init(ft->is_piece_append, 0);
+    pthread_mutex_init(&ft->padlock, 0);
+    pthread_cond_init(&ft->is_piece_append, 0);
 
     return ft;
 }
@@ -21,8 +21,8 @@ void factoryTable_Destroy(FactoryTable* _factoryTable)
     if(_factoryTable == NULL)
         return;
 
-    pthread_mutex_destroy(_factoryTable->padlock);
-    pthread_cond_destroy(_factoryTable->is_piece_append);
+    pthread_mutex_destroy(&_factoryTable->padlock);
+    pthread_cond_destroy(&_factoryTable->is_piece_append);
     free(_factoryTable);
 }
 
@@ -45,7 +45,7 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
         return FACTORYTABLE_FALSE;
     }
 
-    int result = pthread_cond_signal(_factoryTable->is_piece_append);
+    int result = pthread_cond_signal(&_factoryTable->is_piece_append);
     if(result != 0)
     {
         return FACTORYTABLE_FALSE;
