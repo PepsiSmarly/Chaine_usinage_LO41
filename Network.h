@@ -29,7 +29,16 @@ typedef struct
 }
 Network;
 
+/**
+ * Constructeur de Network
+ * @return le Network nouvellement crée
+ */
 Network* network_Create();
+
+/**
+ * Destructeur de Network
+ * @param _network le Network à détruire
+ */
 void network_Destroy(Network* _network);
 
 #endif

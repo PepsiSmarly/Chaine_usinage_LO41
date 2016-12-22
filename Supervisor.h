@@ -20,7 +20,7 @@
 #include <stdlib.h>
 
 #include "Piece.h"
-#include "FactoryTable.h"
+#include "Network.h"
 
 /**
  * Les différents états possibles du système
@@ -55,7 +55,9 @@ void            supervisor_Destroy(Supervisor* _supervisor);
  * @param  _piece      la pièce à introduire
  * @return             succès ou non
  */
-int             supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece);
+int             supervisor_AppendPiece(Supervisor* _supervisor,
+                                        Piece* _piece,
+                                        Network* _network);
 
 /**
  * Détermine la table d'usinage à laquelle la pièce soumise sera transmise
@@ -64,7 +66,8 @@ int             supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece);
  * @return             succès ou non
  */
 int             supervisor_DetermineFactoryTable(Supervisor* _supervisor,
-                                                    Piece* _piece);
+                                                    Piece* _piece,
+                                                    Network* _network);
 
 /**
  * Changer l'état du convoyer (utilisé ou non)
