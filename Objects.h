@@ -40,6 +40,14 @@ typedef struct
 }
 FactoryTable;
 
+/**
+ * Structure qui représente une pièce usinable par le système
+ *
+ * id           : identifiant unique de la pièce
+ * process_code : code qui détermine l'opération d'usinage à effectuer sur
+ *                sur la pièce et donc la table d'usinage qui devra traiter
+ *                cette pièce
+ */
 typedef struct
 {
     int id;
@@ -47,6 +55,11 @@ typedef struct
 }
 Piece;
 
+/**
+ * Structure représentant les robot d'alimentation et de retrait du convoyeur
+ *
+ * piece : la pièce qui est actuellement tenu par le bras
+ */
 typedef struct
 {
     Piece* piece;
@@ -70,6 +83,15 @@ typedef struct
 }
 Convoyer;
 
+/**
+ * Structure qui représente le Superviseur du système
+ *
+ * sys_state        : exprime l'état général du système, on peut donc savoir si
+ *                    si ce dernier est OK ou bien en erreur
+ * convoyer_state   : exprime l'état connu du convoyeur par le Superviseur
+ * last_target      : la dernière table ou l'on doit, ou l'on à envoyé une pièce
+ *                    pour qu'elle soit usiné
+ */
 typedef struct
 {
     SystemState sys_state;
@@ -79,6 +101,10 @@ typedef struct
 }
 Supervisor;
 
+/**
+ * Structure représentant le réseau qu'est le système, il regroupe tout simplement
+ * tout les éléments présent sur le réseau.
+ */
 typedef struct
 {
     Supervisor* supervisor;

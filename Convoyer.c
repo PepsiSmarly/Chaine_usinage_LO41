@@ -38,10 +38,12 @@ void convoyer_Free(Convoyer* _convoyer)
 
 void convoyer_Move(Convoyer* _convoyer)
 {
+    sem_wait(&_convoyer->padlock);
     if(_convoyer->position == -1)
     {
         return;
     }
 
     _convoyer->position += CONVOYER_SPEED;
+    sem_post(&_convoyer->padlock);
 }
