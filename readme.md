@@ -48,3 +48,10 @@ Les objets possèdent différentes fonctions qui sont les suivantes:
     - Si non passer son tour
     - Demander au convoyeur de déplacer la pièce vers le robot de retrait
     - Libérer l'utilisation du tapis aux autres éléments du système
+
+- Arriver d'une nouvelle pièce dans le système :
+    - Le Superviseur vérifie quelle table d'usinage va accueillir la pièce
+    pour sont traitement :
+        - Regarder le code d'usinage de la pièce
+        - Parcourir les tables présentent et faire le lien entre le code
+        d'usinage de la pièce et la table d'usinage

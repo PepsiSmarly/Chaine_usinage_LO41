@@ -31,6 +31,8 @@ typedef struct
 {
     SystemState sys_state;
     int convoyer_state;
+
+    FactoryTable* last_target;
 }
 Supervisor;
 

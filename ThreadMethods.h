@@ -34,9 +34,29 @@ FactoryTable_Args;
  * @param args arguments
  */
 void* factoryTable_Thread(void* args);
+
+/**
+ * Thread du Superviseur
+ * @param args arguments
+ */
 void* supervisor_Thread(void* args);
+
+/**
+ * Thread du robot de chargement
+ * @param args arguments
+ */
 void* robot_loader_Thread(void* args);
+
+/**
+ * Thread du robot de retrait
+ * @param args arguements
+ */
 void* robot_unloader_Thread(void* args);
+
+/**
+ * Thread du convoyeur
+ * @param args argument
+ */
 void* convoyer_Thread(void* args);
 
 /**
