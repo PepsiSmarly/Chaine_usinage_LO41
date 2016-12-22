@@ -38,6 +38,10 @@ Les objets possèdent différentes fonctions qui sont les suivantes:
 contenant tout le système pour pouvoir l'orchestrer !? (Nommé Network dans
 la pratique)
 
+- [ ] Passer les éléments de synchronisation directement dans les structures
+des objets pour une question de logique et de facilité d'accès (Sinon
+accessible seulement dans un seul thread...)
+
 #### Algo
 - FactoryTable -> prendre pièce sur convoyeur :
     - Vérifier la disponibilité du tapis :
@@ -56,3 +60,4 @@ la pratique)
         - Regarder le code d'usinage de la pièce
         - Parcourir les tables présentent et faire le lien entre le code
         d'usinage de la pièce et la table d'usinage
+        - Notifier la table pour qu'elle se prépare à recevoir la pièce
