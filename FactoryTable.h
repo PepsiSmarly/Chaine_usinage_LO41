@@ -7,6 +7,15 @@
 #define FACTORYTABLE_TRUE   1
 #define FACTORYTABLE_FALSE  0
 
+/**
+ * Les différents code dont les pièces se muniront pour spécifier les opérations
+ * d'usinage qu'elles demandent et donc les tables d'usinage vers lesquelles elles
+ * doivent être conduitent
+ */
+#define FACTORY_PROCESS_CODE_1 10
+#define FACTORY_PROCESS_CODE_2 20
+#define FACTORY_PROCESS_CODE_3 30
+
 #include <stdlib.h>
 
 #include "Convoyer.h"

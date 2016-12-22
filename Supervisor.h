@@ -14,6 +14,9 @@
 #ifndef SUPERVISOR_H
 #define SUPERVISOR_H
 
+#define SUPERVISOR_SUCCESS  0
+#define SUPERVISOR_FAIL     1
+
 #include <stdlib.h>
 
 #include "Piece.h"
