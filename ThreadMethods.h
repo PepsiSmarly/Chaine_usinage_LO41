@@ -10,6 +10,7 @@
 
 #include "Supervisor.h"
 #include "Convoyer.h"
+#include "Network.h"
 #include <pthread.h>
 
 /**
@@ -21,8 +22,7 @@
 typedef struct
 {
     FactoryTable*       factoryTable;
-    Convoyer*           convoyer;
-    Supervisor*         supervisor;
+    Network*            network;
 
     pthread_cond_t*     is_piece_append;
     pthread_mutex_t*    padlock;
@@ -68,8 +68,7 @@ void* convoyer_Thread(void* args);
  */
 FactoryTable_Args* factoryTable_Args_Create(
     FactoryTable*   _factoryTable,
-    Supervisor*     _supervisor,
-    Convoyer*       _convoyer
+    Network*        _network
 );
 
 /**
