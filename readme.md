@@ -80,3 +80,4 @@ accessible seulement dans un seul thread...)
 - Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
 - Mettre en place les threads
 - voire quoi mettre dans le fichier de configuration
+- Finir la méthode factoryTable_WaitPiece

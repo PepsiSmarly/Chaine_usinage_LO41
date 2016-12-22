@@ -7,6 +7,9 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+#define PIECE_PROCESSED     1
+#define PIECE_NOT_PROCESSED 0
+
 #include "Objects.h"
 #include "FactoryTable.h"
 

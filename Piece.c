@@ -6,6 +6,7 @@ Piece* piece_Create(int _id, int _process_code)
 
     p->id = _id;
     p->process_code = _process_code;
+    p->is_processed = PIECE_NOT_PROCESSED;
 
     return p;
 }

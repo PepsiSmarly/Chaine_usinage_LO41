@@ -77,4 +77,14 @@ void            factoryTable_SignalConvoyerToSupervisor(
  */
 int             factoryTable_WakeUp(FactoryTable* _factoryTable);
 
+/**
+ * Permet d'attendre la pièce en scrutant le convoyeur, mais la table stop son
+ * observation au bout de 50 secondes
+ * @param  _factoryTable la table qui observe
+ * @param  _convoyer     le convoyeur à observer
+ * @return               FACTORYTABLE_TRUE en cas de succès
+ *                       FACTORYTABLE_FALSE en cas d'échec                  
+ */
+int             factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer);
+
 #endif

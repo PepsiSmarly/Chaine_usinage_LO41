@@ -52,3 +52,14 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
     }
     return FACTORYTABLE_TRUE;
 }
+
+int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
+{
+    int result = convoyer_Use(_convoyer, 50);
+    if(result == CONVOYER_FAIL)
+    {
+        return FACTORYTABLE_FALSE;
+    }
+
+    
+}

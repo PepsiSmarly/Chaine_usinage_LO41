@@ -15,6 +15,22 @@
 typedef enum { OK, ERROR } SystemState;
 
 /**
+* Structure qui représente une pièce usinable par le système
+*
+* id           : identifiant unique de la pièce
+* process_code : code qui détermine l'opération d'usinage à effectuer sur
+*                sur la pièce et donc la table d'usinage qui devra traiter
+*                cette pièce
+*/
+typedef struct
+{
+    int id;
+    int process_code;
+    int is_processed;
+}
+Piece;
+
+/**
  * Structure qui représente une table d'usinage
  *
  * process_code     : code qui détermine la nature du traitement de la machine
@@ -35,25 +51,12 @@ typedef struct
 
     int position;
 
+    Piece* piece;
+
     pthread_cond_t     is_piece_append;
     pthread_mutex_t    padlock;
 }
 FactoryTable;
-
-/**
- * Structure qui représente une pièce usinable par le système
- *
- * id           : identifiant unique de la pièce
- * process_code : code qui détermine l'opération d'usinage à effectuer sur
- *                sur la pièce et donc la table d'usinage qui devra traiter
- *                cette pièce
- */
-typedef struct
-{
-    int id;
-    int process_code;
-}
-Piece;
 
 /**
  * Structure représentant les robot d'alimentation et de retrait du convoyeur
