@@ -24,6 +24,12 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece)
 
     if(result == SUPERVISOR_SUCCESS)
     {
+        if(_supervisor->last_target == NULL)
+        {
+            return SUPERVISOR_FAIL;
+        }
+
+        
         return SUPERVISOR_SUCCESS;
     }
     else
@@ -35,6 +41,8 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece)
 int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece)
 {
     int code = _piece->process_code;
+
+
 }
 
 void supervisor_changeConvoyerState(Supervisor* _supervisor, int _state)
