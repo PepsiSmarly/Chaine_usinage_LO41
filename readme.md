@@ -34,8 +34,8 @@ Les objets possèdent différentes fonctions qui sont les suivantes:
 
 - [ ] Faut-il conserver les méthodes des tables d'usinage dans leur structure ?
 
-- [ ] Créer une sorte de super Structure portant le nom de System et contenant
-      tout le système pour pouvoir l'orchestrer
+- [ ] Créer une sorte de super Structure portant le nom de System et
+contenant tout le système pour pouvoir l'orchestrer !?
 
 #### Algo
 - FactoryTable -> prendre pièce sur convoyeur :
