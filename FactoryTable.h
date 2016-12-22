@@ -70,6 +70,13 @@ void            factoryTable_Destroy(FactoryTable* _ft);
 int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
                                 Convoyer* _convoyer);
 
+/**
+ * Signal un changement d'état du convoyeur au Superviseur suite à une
+ * manipulation mené par la table (chargement, déchargement de pièce)
+ * @param  _factoryTable la table émetrice du changement
+ * @param  _supervisor   le Superviseur
+ * @param  _code         le code d'état du convoyeur (voir Convoyer.h)
+ */
 void            factoryTable_SignalConvoyerToSupervisor(
                                 FactoryTable* _factoryTable,
                                 Supervisor* _supervisor,

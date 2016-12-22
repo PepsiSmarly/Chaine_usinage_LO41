@@ -29,7 +29,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
             return SUPERVISOR_FAIL;
         }
 
-
+        
         return SUPERVISOR_SUCCESS;
     }
     else
