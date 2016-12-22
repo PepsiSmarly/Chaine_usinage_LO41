@@ -48,12 +48,13 @@ void        convoyer_Destroy(Convoyer* _convoyer);
 
 /**
  * Permet de monopoliser le convoyeur
- * @param  _convoyer le convoyeur à monopoliser
- * @return           CONVOYER_SUCCESS si pas de problème
- *                   CONVOYER_FAIL si problème ou si ça fait 20 secondes que
- *                   l'on attend
+ * @param  _convoyer  le convoyeur à monopoliser
+ * @param  _timeout_s le temps en cas d'attente avant de renvoyer une erreur
+ * @return            CONVOYER_SUCCESS si pas de problème
+ *                    CONVOYER_FAIL si problème ou si ça fait _timeout_s secondes que
+ *                    l'on attend
  */
-int         convoyer_Use(Convoyer* _convoyer);
+int         convoyer_Use(Convoyer* _convoyer, int _timeout_s);
 
 /**
  * Permet de libérer le convoyeur de la monopolisation pour permettre aux

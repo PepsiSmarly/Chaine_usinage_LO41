@@ -18,10 +18,10 @@ void convoyer_Destroy(Convoyer* _convoyer)
     free(_convoyer);
 }
 
-int convoyer_Use(Convoyer* _convoyer)
+int convoyer_Use(Convoyer* _convoyer, int _timeout_s)
 {
     struct timespec ts;
-    ts.tv_sec = 20;
+    ts.tv_sec = _timeout_s;
 
     int result = sem_timedwait(&_convoyer->padlock, &ts);
     if(result != 0)

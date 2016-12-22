@@ -17,7 +17,16 @@ void robot_Destroy(Robot* _robot)
 
 int robot_loadConvoyer(Robot* _robot, Convoyer* _convoyer)
 {
+    int result = convoyer_Use(_convoyer, 20);
 
+    if(result == CONVOYER_FAIL)
+    {
+        return ROBOT_FAIL;
+    }
+
+    _convoyer->loaded_piece = _robot->piece;
+    _robot->piece = NULL;
+    return ROBOT_SUCCESS;
 }
 
 int robot_unloadConvoyer(Robot* _robot, Convoyer* _convoyer)
