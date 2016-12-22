@@ -21,9 +21,14 @@ void convoyer_Destroy(Convoyer* _convoyer)
 
 int convoyer_Use(Convoyer* _convoyer)
 {
+    struct timespec ts;
+    ts.tv_sec = 20;
 
-
-    int result = sem_wait(&_convoyer->padlock);
+    int result = sem_timedwait(&_convoyer->padlock, &ts);
+    if(result != 0)
+    {
+        return CONVOYER_FAIL;
+    }
     return CONVOYER_SUCCESS;
 }
 

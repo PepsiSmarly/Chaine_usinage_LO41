@@ -10,6 +10,7 @@ SOURCES += Robot.c
 SOURCES += Supervisor.c
 SOURCES += Array.c
 SOURCES += ThreadMethods.c
+SOURCES += Network.c
 
 CXX = gcc
 NAME = usine

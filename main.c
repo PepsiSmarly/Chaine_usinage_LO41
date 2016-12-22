@@ -10,12 +10,22 @@
 #include "Config.h"
 #include "Network.h"
 
+void clean_up();
+
+Network* network;
+
 int main(int argc, char const *argv[])
 {
+    network = network_Create();
 
+    clean_up();
     return 0;
 }
 
+void clean_up()
+{
+    network_Destroy(network);
+}
 /**
  * TODO: Créer le Supervisor
  */
