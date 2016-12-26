@@ -7,11 +7,24 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
+/**
+ * Constantes utilisées pour les valeurs de retour des méthodes de
+ * Robot
+ */
 #define ROBOT_SUCCESS   1
 #define ROBOT_FAIL      0
 
+/**
+ * Position des deux robots (robot de chargement et de déchargement)
+ */
 #define ROBOT_LOADER_POS    0
 #define ROBOT_UNLOADER_POS  100
+
+/**
+ * Le temps maximum que le robot de chargement va passer à essayer de
+ * charger la pièce sur le convoyeur avant d'abandonner
+ */
+#define ROBOT_LOAD_TIMEOUT 20
 
 #include "Objects.h"
 #include "Piece.h"

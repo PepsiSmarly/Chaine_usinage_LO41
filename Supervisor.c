@@ -6,6 +6,7 @@ Supervisor* supervisor_Create()
 
     s->sys_state = OK;
     s->sys_state = CONVOYER_FREE;
+    s->is_system_running = SYSTEM_RUNNING;
 
     return s;
 }

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #include "Network.h"
+#include "Robot.h"
 
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec

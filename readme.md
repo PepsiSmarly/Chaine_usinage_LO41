@@ -76,6 +76,16 @@ accessible seulement dans un seul thread...)
     - remettre la pièce sur le tapis
     - se rendormir en attendant d'être de nouveau réveillé par le Superviseur
 
+- Robot chargeur:
+    - Etre endormi tant qu'il n'a pas de travail
+    - Réveillé par le superviseur car une pièce arrive dans le système
+    - Il monopolise donc le convoyeur
+    - il dépose la pièce sur le convoyeur:
+        - Si au bout de 20 secondes la pièce n'est pas déposée sur le
+        le convoyeur alors une erreur est levée
+    - Il libère le convoyeur pour que les autres puissent s'en servir
+    - Il retourne dans un état endormi jusqu'à être réveillé
+
 ### TODO
 - [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
 - [ ] Mettre en place les threads

@@ -7,6 +7,12 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
+/**
+ * Pour signaler si le système tourne ou non
+ */
+#define SYSTEM_RUNNING      1
+#define SYSTEM_NOT_RUNNING  0
+
 #include <semaphore.h>
 #include <sys/time.h>
 
@@ -105,6 +111,7 @@ typedef struct
 {
     SystemState sys_state;
     int convoyer_state;
+    int is_system_running;
 
     FactoryTable* last_target;
 }

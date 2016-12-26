@@ -24,7 +24,7 @@ void factoryTable_Args_Destroy(FactoryTable_Args* _ft_Args)
 {
     if(_ft_Args == NULL)
         return;
-        
+
     free(_ft_Args);
 }
 
@@ -44,4 +44,23 @@ void robot_Args_Destroy(Robot_Args* _robot_Args)
         return;
 
     free(_robot_Args);
+}
+
+void* robot_loader_Thread(void* args)
+{
+    Robot_Args* arg = (Robot_Args*)args;
+    suseconds_t waited_time;
+
+    while(arg->network->supervisor->is_system_running != SYSTEM_NOT_RUNNING)
+    {
+        robot_WaitWork(arg->robot);
+
+        while(arg->network->convoyer->loaded_piece != NULL)
+        {
+
+        }
+        convoyer_Use(arg->network->convoyer, )
+    }
+
+    pthread_exit(0);
 }
