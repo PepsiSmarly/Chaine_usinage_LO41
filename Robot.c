@@ -24,6 +24,7 @@ int robot_LoadConvoyer(Robot* _robot, Convoyer* _convoyer)
     }
 
     _convoyer->loaded_piece = _robot->piece;
+    _convoyer->position = ROBOT_LOADER_POS;
     convoyer_Free(_convoyer);
     _robot->piece = NULL;
     return ROBOT_SUCCESS;

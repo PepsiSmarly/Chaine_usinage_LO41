@@ -39,8 +39,14 @@
  */
 #define FACTORYTABLE_CONVOYER_INTERVAL 5
 
+/**
+ * Représente le temps que possède la table pour extraire la pièce du tapis une
+ * fois que le convoyeur l'a prévenu de l'arrivée de cette dernière
+ */
+#define FACTORYTABLE_EXTRACT_TIME 50
+
 #include <stdlib.h>
-#include "pthread.h"
+#include <pthread.h>
 
 #include "Convoyer.h"
 #include "Supervisor.h"

@@ -43,11 +43,22 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
 
 int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
 {
-    int result = convoyer_Use(_convoyer, 50);
-    if(result == CONVOYER_FAIL)
+    int lower_mark = _factoryTable->position - FACTORYTABLE_CONVOYER_INTERVAL;
+    int upper_mark = _factoryTable->position + FACTORYTABLE_CONVOYER_INTERVAL;
+
+    if(_convoyer->position >= lower_mark && _convoyer->position <= upper_mark)
+    {
+        int result = convoyer_Use(_convoyer, 50);
+        if(result == CONVOYER_FAIL)
+        {
+            return FACTORYTABLE_FALSE;
+        }
+
+        convoyer_Free(_convoyer);
+    }
+    else
     {
         return FACTORYTABLE_FALSE;
     }
-
 
 }
