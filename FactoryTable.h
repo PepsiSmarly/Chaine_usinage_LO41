@@ -19,9 +19,25 @@
 #define FACTORY_PROCESS_CODE_2 20
 #define FACTORY_PROCESS_CODE_3 30
 
+/**
+ * Les différentes positions de chacune des tables d'usinage par rapport au
+ * tapis
+ */
 #define FACTORYTABLE_POS_1 25
 #define FACTORYTABLE_POS_2 50
 #define FACTORYTABLE_POS_3 75
+
+/**
+ * Constante qui indique la marge de position possible pour que les tables
+ * d'usinage puissent prendre les pièces sur le tapis. Ainsi pour former
+ * l'intervalle ou la pièce peut être prise par la table, on prend la position
+ * de cette dernière et pour la borne basse on lui soustrait cette constante, en
+ * ce qui converne la borne haute, on lui additionne.
+ *
+ * borne basse = pos - FACTORYTABLE_CONVOYER_INTERVAL
+ * borne haute = pos + FACTORYTABLE_CONVOYER_INTERVAL
+ */
+#define FACTORYTABLE_CONVOYER_INTERVAL 5
 
 #include <stdlib.h>
 #include "pthread.h"
@@ -83,7 +99,7 @@ int             factoryTable_WakeUp(FactoryTable* _factoryTable);
  * @param  _factoryTable la table qui observe
  * @param  _convoyer     le convoyeur à observer
  * @return               FACTORYTABLE_TRUE en cas de succès
- *                       FACTORYTABLE_FALSE en cas d'échec                  
+ *                       FACTORYTABLE_FALSE en cas d'échec
  */
 int             factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer);
 
