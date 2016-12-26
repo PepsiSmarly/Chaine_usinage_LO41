@@ -7,6 +7,8 @@
 #define SYSTEME_RUN_TRUE    1
 #define SYSTEME_RUN_FALSE   0
 
+#include <pthread.h>
+
 #include "Config.h"
 #include "Supervisor.h"
 #include "Convoyer.h"
@@ -25,6 +27,10 @@ FactoryTable* table_2;
 FactoryTable* table_3;
 Robot* robot_loader;
 Robot* robot_unloader;
+
+pthread_t thread_supervisor;
+pthread_t thread_convoyer;
+pthread_t thread_tables_1;
 
 int main(int argc, char const *argv[])
 {

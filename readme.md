@@ -77,7 +77,7 @@ accessible seulement dans un seul thread...)
     - se rendormir en attendant d'être de nouveau réveillé par le Superviseur
 
 ### TODO
-- Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
-- Mettre en place les threads
-- voire quoi mettre dans le fichier de configuration
-- Finir la méthode factoryTable_WaitPiece
+- [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
+- [ ] Mettre en place les threads
+- [ ] voire quoi mettre dans le fichier de configuration
+- [X] Finir la méthode factoryTable_WaitPiece

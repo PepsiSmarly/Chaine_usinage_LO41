@@ -69,6 +69,9 @@ FactoryTable;
 typedef struct
 {
     Piece* piece;
+
+    pthread_cond_t  work_available;
+    pthread_mutex_t padlock;
 }
 Robot;
 
