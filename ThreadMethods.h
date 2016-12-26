@@ -16,8 +16,6 @@
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec
  * la méthode des tables d'usinage (FactoryTable)
- *
- *
  */
 typedef struct
 {
@@ -25,6 +23,17 @@ typedef struct
     Network*            network;
 }
 FactoryTable_Args;
+
+/**
+ * Structure à utiliser en argument lors de l'utilisation de pthread_create avec
+ * la méthode des robot (FactoryTable)
+ */
+typedef struct
+{
+    Robot*      robot;
+    Network*    network;
+}
+Robot_Args;
 
 /**
  * Thread des tables d'usinage
@@ -59,8 +68,7 @@ void* convoyer_Thread(void* args);
 /**
  * Permet d'initialiser tous les éléments
  * @param  _factoryTable la table concernée
- * @param  _supervisor   le superviseur du système
- * @param  _convoyer     le convoyeur du système
+ * @param  _network le réseau (totalité du système)
  * @return               l'argument complété
  */
 FactoryTable_Args* factoryTable_Args_Create(
@@ -73,5 +81,22 @@ FactoryTable_Args* factoryTable_Args_Create(
  * @param _ft_Args les arguments à détruire
  */
 void factoryTable_Args_Destroy(FactoryTable_Args* _ft_Args);
+
+/**
+ * Permet d'initialiser tous les éléments
+ * @param  _robot   le robot concerné
+ * @param  _network le réseau (totalité du système)
+ * @return          le Robot_Args nouvellement créé et complété
+ */
+Robot_Args* robot_Args_Create(
+    Robot*      _robot,
+    Network*    _network
+);
+
+/**
+ * Détruire les arguments
+ * @param _robot_Args les arguments à détruire
+ */
+void robot_Args_Destroy(Robot_Args* _robot_Args);
 
 #endif
