@@ -13,6 +13,8 @@ FactoryTable* factoryTable_Create(int _process_code, int _position)
     pthread_mutex_init(&ft->padlock, 0);
     pthread_cond_init(&ft->is_piece_append, 0);
 
+    ft->waited_time = 0L;
+
     return ft;
 }
 
@@ -43,21 +45,39 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
 
 int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
 {
+    struct timeval before_time, after_time;
+    gettimeofday(&before_time, NULL);
+
     int lower_mark = _factoryTable->position - FACTORYTABLE_CONVOYER_INTERVAL;
     int upper_mark = _factoryTable->position + FACTORYTABLE_CONVOYER_INTERVAL;
 
     if(_convoyer->position >= lower_mark && _convoyer->position <= upper_mark)
     {
-        int result = convoyer_Use(_convoyer, 50);
+        int result = convoyer_Use(_convoyer, FACTORYTABLE_EXTRACT_TIME -
+            (_factoryTable->waited_time / 1000000));
+
         if(result == CONVOYER_FAIL)
         {
+            gettimeofday(&after_time, NULL);
+            _factoryTable->waited_time +=
+                before_time.tv_usec - after_time.tv_usec;
+
             return FACTORYTABLE_FALSE;
         }
 
+        _factoryTable->piece = _convoyer->loaded_piece;
+        _convoyer->loaded_piece = NULL;
+
         convoyer_Free(_convoyer);
+        _factoryTable->waited_time = 0L;
+
+        return FACTORYTABLE_TRUE;
     }
     else
     {
+        gettimeofday(&after_time, NULL);
+        _factoryTable->waited_time += before_time.tv_usec - after_time.tv_usec;
+
         return FACTORYTABLE_FALSE;
     }
 

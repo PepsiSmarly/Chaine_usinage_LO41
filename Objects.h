@@ -8,6 +8,7 @@
 #define OBJECTS_H
 
 #include <semaphore.h>
+#include <sys/time.h>
 
 /**
  * Les différents états possibles du système
@@ -55,6 +56,8 @@ typedef struct
 
     pthread_cond_t     is_piece_append;
     pthread_mutex_t    padlock;
+
+    suseconds_t waited_time;
 }
 FactoryTable;
 
