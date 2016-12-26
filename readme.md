@@ -81,3 +81,6 @@ accessible seulement dans un seul thread...)
 - [ ] Mettre en place les threads
 - [ ] voire quoi mettre dans le fichier de configuration
 - [X] Finir la méthode factoryTable_WaitPiece
+- [ ] Repenser la méthode supervisor_AppendPiece, pour donner la pièce au
+bras puis lui dire de faire son travail plutôt que de le lui faire faire
+directement.
