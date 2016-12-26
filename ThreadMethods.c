@@ -49,17 +49,26 @@ void robot_Args_Destroy(Robot_Args* _robot_Args)
 void* robot_loader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
-    suseconds_t waited_time;
+    double waited_time = 0;
 
     while(arg->network->supervisor->is_system_running != SYSTEM_NOT_RUNNING)
     {
         robot_WaitWork(arg->robot);
 
-        while(arg->network->convoyer->loaded_piece != NULL)
+        while(arg->network->convoyer->loaded_piece != NULL
+            && waited_time < ROBOT_LOAD_TIMEOUT)
         {
-
+            waited_time += clock() / CLOCKS_PER_SEC;
         }
-        convoyer_Use(arg->network->convoyer, )
+
+        if(waited_time >= ROBOT_LOAD_TIMEOUT)
+        {
+            // signaler échec au superviseur
+
+            continue;
+        }
+        convoyer_Use(arg->network->convoyer,
+            ROBOT_LOAD_TIMEOUT - (int)waited_time);
     }
 
     pthread_exit(0);
