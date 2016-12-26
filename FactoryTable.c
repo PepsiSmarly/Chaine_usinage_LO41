@@ -26,18 +26,6 @@ void factoryTable_Destroy(FactoryTable* _factoryTable)
     free(_factoryTable);
 }
 
-int factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _convoyer)
-{
-    return 0;
-}
-
-void factoryTable_SignalConvoyerToSupervisor(FactoryTable* _factoryTable,
-                                            Supervisor* _supervisor,
-                                            int _code)
-{
-
-}
-
 int factoryTable_WakeUp(FactoryTable* _factoryTable)
 {
     if(_factoryTable->is_in_process == FACTORYTABLE_TRUE)
@@ -61,5 +49,5 @@ int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
         return FACTORYTABLE_FALSE;
     }
 
-    
+
 }

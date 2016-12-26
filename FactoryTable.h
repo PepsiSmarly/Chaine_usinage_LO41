@@ -74,18 +74,6 @@ int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
                                 Convoyer* _convoyer);
 
 /**
- * Signal un changement d'état du convoyeur au Superviseur suite à une
- * manipulation mené par la table (chargement, déchargement de pièce)
- * @param  _factoryTable la table émetrice du changement
- * @param  _supervisor   le Superviseur
- * @param  _code         le code d'état du convoyeur (voir Convoyer.h)
- */
-void            factoryTable_SignalConvoyerToSupervisor(
-                                FactoryTable* _factoryTable,
-                                Supervisor* _supervisor,
-                                int _code);
-
-/**
  * Permet de "réveiller" la table d'usinage pour l'arriver d'une pièce à traiter
  * @param  _factoryTable la table à réveiller
  * @return               FACTORYTABLE_TRUE en cas de succès,
