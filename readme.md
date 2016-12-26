@@ -78,12 +78,15 @@ accessible seulement dans un seul thread...)
 
 - Robot chargeur:
     - Etre endormi tant qu'il n'a pas de travail
-    - Réveillé par le superviseur car une pièce arrive dans le système
+    - Réveillé par le superviseur car une pièce arrive dans le système:
+        - Ce qui pour effet de faire entrer le superviseur dans un état de
+        de sommeil dans l'attente de la réponse du robot de chargement
     - Il monopolise donc le convoyeur
     - il dépose la pièce sur le convoyeur:
         - Si au bout de 20 secondes la pièce n'est pas déposée sur le
         le convoyeur alors une erreur est levée
-    - Il libère le convoyeur pour que les autres puissent s'en servir
+    - Il libère le convoyeur pour que les autres puissent s'en servir:
+        - Il réveille le superviseur en lui faisant un compte rendu
     - Il retourne dans un état endormi jusqu'à être réveillé
 
 ### TODO
