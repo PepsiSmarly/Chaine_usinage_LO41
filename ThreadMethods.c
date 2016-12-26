@@ -50,6 +50,7 @@ void* robot_loader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
     double waited_time = 0;
+    int results = 0;
 
     while(arg->network->supervisor->is_system_running != SYSTEM_NOT_RUNNING)
     {
@@ -67,8 +68,21 @@ void* robot_loader_Thread(void* args)
 
             continue;
         }
-        convoyer_Use(arg->network->convoyer,
+        results = convoyer_Use(arg->network->convoyer,
             ROBOT_LOAD_TIMEOUT - (int)waited_time);
+        if(results == CONVOYER_FAIL)
+        {
+            // Signaler au superviseur l'échec
+
+            continue;
+        }
+
+        arg->network->convoyer->loaded_piece = arg->robot->piece;
+        arg->network->convoyer->position = ROBOT_LOADER_POS;
+        convoyer_Free(arg->network->convoyer);
+        arg->robot->piece = NULL;
+
+        // Signaler succès au superviseur
     }
 
     pthread_exit(0);
