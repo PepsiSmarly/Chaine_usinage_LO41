@@ -38,12 +38,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
 
         _network->robot_loader->piece = _piece;
         robot_WakeUp(_network->robot_loader);
-        // result = robot_LoadConvoyer(_network->robot_loader, _network->convoyer);
-        // supervisor_changeConvoyerState(_supervisor, CONVOYER_TAKE);
-        // if(result == ROBOT_FAIL)
-        // {
-        //     return SUPERVISOR_FAIL;
-        // }
+
         return SUPERVISOR_SUCCESS;
     }
     else
@@ -83,4 +78,12 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
 void supervisor_changeConvoyerState(Supervisor* _supervisor, int _state)
 {
     _supervisor->convoyer_state = _state;
+}
+
+void supervisor_LoadingReport(Supervisor* _supervisor, int _code)
+{
+    if(_code == ROBOT_FAIL)
+    {
+        _supervisor->sys_state = ERROR;
+    }
 }

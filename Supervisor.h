@@ -64,4 +64,14 @@ int             supervisor_DetermineFactoryTable(Supervisor* _supervisor,
  */
 void            supervisor_changeConvoyerState(Supervisor* _supervisor, int _state);
 
+/**
+ * Permet au robot de chargement de rendre compte du chergement d'une pièce sur
+ * le Convoyeur
+ * @param  _supervisor le Superviseur à prévenir
+ * @param  _code       le code de compte rendu :
+ *                     - ROBOT_SUCCESS en cas de succès de chargement
+ *                     - ROBOT_FAIL en cas d'échec de chargement
+ */
+void            supervisor_LoadingReport(Supervisor* _supervisor, int _code);
+
 #endif

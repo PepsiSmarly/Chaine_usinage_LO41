@@ -65,6 +65,7 @@ void* robot_loader_Thread(void* args)
         if(waited_time >= ROBOT_LOAD_TIMEOUT)
         {
             // signaler échec au superviseur
+            supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
 
             continue;
         }
@@ -73,6 +74,7 @@ void* robot_loader_Thread(void* args)
         if(results == CONVOYER_FAIL)
         {
             // Signaler au superviseur l'échec
+            supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
 
             continue;
         }
@@ -83,6 +85,7 @@ void* robot_loader_Thread(void* args)
         arg->robot->piece = NULL;
 
         // Signaler succès au superviseur
+        supervisor_LoadingReport(arg->network->supervisor, ROBOT_SUCCESS);
     }
 
     pthread_exit(0);

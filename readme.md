@@ -94,6 +94,9 @@ accessible seulement dans un seul thread...)
 - [ ] Mettre en place les threads
 - [ ] voire quoi mettre dans le fichier de configuration
 - [X] Finir la méthode factoryTable_WaitPiece
-- [ ] Repenser la méthode supervisor_AppendPiece, pour donner la pièce au
+- [X] Repenser la méthode supervisor_AppendPiece, pour donner la pièce au
 bras puis lui dire de faire son travail plutôt que de le lui faire faire
 directement.
+- [X] Faire une méthode pour le Superviseur qui permette de le notifier
+de la fin du chargement de la pièce sur le Convoyeur que se soit un
+succès ou un échec, il devra ensuite agir en conséquence
