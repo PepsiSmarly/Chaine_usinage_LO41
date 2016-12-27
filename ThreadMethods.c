@@ -46,6 +46,24 @@ void robot_Args_Destroy(Robot_Args* _robot_Args)
     free(_robot_Args);
 }
 
+Supervisor_Args* supervisor_Args_Create( Supervisor* _supervisor, Network* _network)
+{
+    Supervisor_Args* args = malloc(sizeof(Supervisor_Args));
+
+    args->supervisor = _supervisor;
+    args->network = _network;
+
+    return args;
+}
+
+void supervisor_Args_Destroy(Supervisor_Args* _supervisor_Args)
+{
+    if(_supervisor_Args == NULL)
+        return;
+
+    free(_supervisor_Args);
+}
+
 void* robot_loader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
@@ -86,6 +104,18 @@ void* robot_loader_Thread(void* args)
 
         // Signaler succès au superviseur
         supervisor_LoadingReport(arg->network->supervisor, ROBOT_SUCCESS);
+    }
+
+    pthread_exit(0);
+}
+
+void* supervisor_Thread(void* args)
+{
+    Supervisor_Args* arg = (Supervisor_Args*)args;
+
+    while(arg->supervisor->is_system_running)
+    {
+
     }
 
     pthread_exit(0);

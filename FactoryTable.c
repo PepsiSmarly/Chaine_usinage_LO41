@@ -23,8 +23,8 @@ void factoryTable_Destroy(FactoryTable* _factoryTable)
     if(_factoryTable == NULL)
         return;
 
-    pthread_mutex_destroy(&_factoryTable->padlock);
-    pthread_cond_destroy(&_factoryTable->is_piece_append);
+    //pthread_mutex_destroy(&_factoryTable->padlock);
+    //pthread_cond_destroy(&_factoryTable->is_piece_append);
     free(_factoryTable);
 }
 

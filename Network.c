@@ -22,15 +22,15 @@ void network_Destroy(Network* _network)
     if(_network == NULL)
         return;
 
-    free(_network->supervisor);
-    free(_network->convoyer);
-
-    free(_network->table_process_1);
-    free(_network->table_process_2);
-    free(_network->table_process_3);
-
-    free(_network->robot_loader);
-    free(_network->robot_unloader);
+    // free(_network->supervisor);
+    // free(_network->convoyer);
+    //
+    // free(_network->table_process_1);
+    // free(_network->table_process_2);
+    // free(_network->table_process_3);
+    //
+    // free(_network->robot_loader);
+    // free(_network->robot_unloader);
 
     free(_network);
 }
