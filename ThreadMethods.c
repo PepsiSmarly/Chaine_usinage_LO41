@@ -70,7 +70,7 @@ void* robot_loader_Thread(void* args)
     double waited_time = 0;
     int results = 0;
 
-    while(arg->network->supervisor->is_system_running != SYSTEM_NOT_RUNNING)
+    while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         robot_WaitWork(arg->robot);
 
@@ -113,7 +113,7 @@ void* supervisor_Thread(void* args)
 {
     Supervisor_Args* arg = (Supervisor_Args*)args;
 
-    while(arg->supervisor->is_system_running && arg->supervisor->sys_state != ERROR)
+    while(arg->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         if(arg->supervisor->entering_piece != NULL)
         {
@@ -124,6 +124,11 @@ void* supervisor_Thread(void* args)
             );
 
             arg->supervisor->entering_piece = NULL;
+        }
+
+        if(arg->supervisor->sys_state == ERROR)
+        {
+            arg->supervisor->is_system_running = SYSTEM_NOT_RUNNING;
         }
     }
 
