@@ -91,7 +91,11 @@ accessible seulement dans un seul thread...)
 
 ### TODO
 - [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
-- [ ] Mettre en place les threads
+- [ ] Mettre en place les threads :
+    - [ ] Continuer/Finir le thread du Superviseur
+    - [ ] thread des tables d'usinage
+    - [ ] thread du robot de déchargement
+    - [ ] thread du Convoyeur
 - [ ] voire quoi mettre dans le fichier de configuration
 - [X] Finir la méthode factoryTable_WaitPiece
 - [X] Repenser la méthode supervisor_AppendPiece, pour donner la pièce au
