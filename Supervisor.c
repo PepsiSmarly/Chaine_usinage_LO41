@@ -39,13 +39,15 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
             return SUPERVISOR_FAIL;
         }
 
+        sem_wait(&_supervisor->padlock_lt);
         result = factoryTable_WakeUp(_supervisor->last_target);
+        sem_post(&_supervisor->padlock_lt);
         if(result == FACTORYTABLE_FALSE)
         {
             return SUPERVISOR_FAIL;
         }
 
-        _network->robot_loader->piece = _piece;
+        robot_SetPiece(_network->robot_loader, _piece);
         robot_WakeUp(_network->robot_loader);
 
         return SUPERVISOR_SUCCESS;
@@ -60,6 +62,7 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
 {
     int code = _piece->process_code;
 
+    sem_wait(&_supervisor->padlock_lt);
     switch (code) {
         case FACTORY_PROCESS_CODE_1:
         {
@@ -78,9 +81,11 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
         }
         default:
         {
+            sem_post(&_supervisor->padlock_lt);
             return SUPERVISOR_FAIL;
         }
     }
+    sem_post(&_supervisor->padlock_lt);
     return SUPERVISOR_SUCCESS;
 }
 

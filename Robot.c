@@ -4,6 +4,9 @@ Robot* robot_Create()
 {
     Robot* r = malloc(sizeof(Robot));
 
+    r->piece = NULL;
+    sem_init(&r->padlock_piece, 0, 1);
+
     pthread_mutex_init(&r->padlock, NULL);
     pthread_cond_init(&r->work_available, NULL);
 
@@ -14,6 +17,8 @@ void robot_Destroy(Robot* _robot)
 {
     if(_robot == NULL)
         return;
+
+    sem_destroy(&_robot->padlock_piece);
 
     pthread_mutex_destroy(&_robot->padlock);
     pthread_cond_destroy(&_robot->work_available);
@@ -62,4 +67,11 @@ void robot_WakeUp(Robot* _robot)
     pthread_mutex_lock(&_robot->padlock);
     pthread_cond_signal(&_robot->work_available);
     pthread_mutex_unlock(&_robot->padlock);
+}
+
+void robot_SetPiece(Robot* _robot, Piece* _piece)
+{
+    sem_wait(&_robot->padlock_piece);
+    _robot->piece = _piece;
+    sem_post(&_robot->padlock_piece);
 }

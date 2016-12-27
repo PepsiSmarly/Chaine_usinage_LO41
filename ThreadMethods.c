@@ -117,7 +117,6 @@ void* supervisor_Thread(void* args)
     {
         if(arg->supervisor->entering_piece != NULL)
         {
-
             supervisor_AppendPiece(
                 arg->supervisor,
                 arg->supervisor->entering_piece,

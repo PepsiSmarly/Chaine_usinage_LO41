@@ -74,4 +74,11 @@ void    robot_WaitWork(Robot* _robot);
  */
 void    robot_WakeUp(Robot* _robot);
 
+/**
+ * Permet d'attribuer une pièce au robot en protégeant le tout par un semaphore
+ * @param  _robot le robot auquel attribuer une pièce
+ * @param  _piece la pièce à attribuer
+ */
+void    robot_SetPiece(Robot* _robot, Piece* _piece);
+
 #endif
