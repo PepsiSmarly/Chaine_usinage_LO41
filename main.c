@@ -97,6 +97,9 @@ int main(int argc, char const *argv[])
 
 void clean_up()
 {
+    config_Destroy(config);
+    printf("free config\n");
+
     network_Destroy(network);
     printf("free network\n");
     supervisor_Destroy(supervisor);

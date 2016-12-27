@@ -113,9 +113,19 @@ void* supervisor_Thread(void* args)
 {
     Supervisor_Args* arg = (Supervisor_Args*)args;
 
-    while(arg->supervisor->is_system_running)
+    while(arg->supervisor->is_system_running && arg->supervisor->sys_state != ERROR)
     {
+        if(arg->supervisor->entering_piece != NULL)
+        {
 
+            supervisor_AppendPiece(
+                arg->supervisor,
+                arg->supervisor->entering_piece,
+                arg->network
+            );
+
+            arg->supervisor->entering_piece = NULL;
+        }
     }
 
     pthread_exit(0);

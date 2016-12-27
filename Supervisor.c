@@ -8,6 +8,12 @@ Supervisor* supervisor_Create()
     s->sys_state = CONVOYER_FREE;
     s->is_system_running = SYSTEM_RUNNING;
 
+    s->last_target = NULL;
+    s->entering_piece = NULL;
+
+    sem_init(&s->padlock_lt, 0, 1);
+    sem_init(&s->padlock_piece, 0, 1);
+
     return s;
 }
 
@@ -15,6 +21,9 @@ void supervisor_Destroy(Supervisor* _supervisor)
 {
     if(_supervisor == NULL)
         return;
+
+    sem_destroy(&_supervisor->padlock_lt);
+    sem_destroy(&_supervisor->padlock_piece);
 
     free(_supervisor);
 }

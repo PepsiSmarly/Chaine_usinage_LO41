@@ -113,7 +113,11 @@ typedef struct
     int convoyer_state;
     int is_system_running;
 
+    sem_t         padlock_lt;
     FactoryTable* last_target;
+
+    sem_t  padlock_piece;
+    Piece* entering_piece;
 }
 Supervisor;
 
