@@ -66,12 +66,20 @@ void supervisor_Args_Destroy(Supervisor_Args* _supervisor_Args)
 
 Convoyer_Args* convoyer_Args_Create(Convoyer* _convoyer, Network*  _network)
 {
+    Convoyer_Args* args = malloc(sizeof(Convoyer_Args));
 
+    args->convoyer =  _convoyer;
+    args->network = _network;
+
+    return args;
 }
 
 void convoyer_Args_Destroy(Convoyer_Args* _convoyer_Args)
 {
-    
+    if(_convoyer_Args == NULL)
+        return;
+
+    free(_convoyer_Args);
 }
 
 void* robot_loader_Thread(void* args)
