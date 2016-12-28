@@ -91,6 +91,7 @@ accessible seulement dans un seul thread...)
 
 ### TODO
 - [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
+    - [ ] Pour les threads regarder du côté de pthread_kill()
 - [ ] Mettre en place les threads :
     - [ ] Continuer/Finir le thread du Superviseur
     - [ ] thread des tables d'usinage
@@ -104,3 +105,5 @@ directement.
 - [X] Faire une méthode pour le Superviseur qui permette de le notifier
 de la fin du chargement de la pièce sur le Convoyeur que se soit un
 succès ou un échec, il devra ensuite agir en conséquence
+- [ ] Trouver le problème de la fuite de mémoire lié vraisemblablement
+aux threads...

@@ -7,6 +7,7 @@ Convoyer* convoyer_Create()
     c->position = CONVOYER_NO_PIECE_POS;
 
     sem_init(&c->padlock, 0, CONVOYER_CAPACITY);
+    return c;
 }
 
 void convoyer_Destroy(Convoyer* _convoyer)

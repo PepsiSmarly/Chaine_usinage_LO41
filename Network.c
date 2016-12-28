@@ -4,15 +4,15 @@ Network* network_Create()
 {
     Network* n = (Network*)malloc(sizeof(Network));
 
-    n->supervisor = malloc(sizeof(Supervisor));
-    n->convoyer = malloc(sizeof(Convoyer));
+    n->supervisor = NULL;
+    n->convoyer = NULL;
 
-    n->table_process_1 = malloc(sizeof(FactoryTable));
-    n->table_process_2 = malloc(sizeof(FactoryTable));
-    n->table_process_3 = malloc(sizeof(FactoryTable));
+    n->table_process_1 = NULL;
+    n->table_process_2 = NULL;
+    n->table_process_3 = NULL;
 
-    n->robot_loader = malloc(sizeof(Robot));
-    n->robot_unloader = malloc(sizeof(Robot));
+    n->robot_loader = NULL;
+    n->robot_unloader = NULL;
 
     return n;
 }

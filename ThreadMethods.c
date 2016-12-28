@@ -1,12 +1,5 @@
 #include "ThreadMethods.h"
 
-void* factoryTable_Thread(void* args)
-{
-    FactoryTable_Args* arg = (FactoryTable_Args*)args;
-
-    pthread_exit(0);
-}
-
 FactoryTable_Args* factoryTable_Args_Create(
     FactoryTable*   _factoryTable,
     Network*        _network
@@ -82,6 +75,13 @@ void convoyer_Args_Destroy(Convoyer_Args* _convoyer_Args)
     free(_convoyer_Args);
 }
 
+void* factoryTable_Thread(void* args)
+{
+    FactoryTable_Args* arg = (FactoryTable_Args*)args;
+
+    pthread_exit(0);
+}
+
 void* robot_loader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
@@ -127,6 +127,11 @@ void* robot_loader_Thread(void* args)
     pthread_exit(0);
 }
 
+void* robot_unloader_Thread(void* args)
+{
+    pthread_exit(0);
+}
+
 void* supervisor_Thread(void* args)
 {
     Supervisor_Args* arg = (Supervisor_Args*)args;
@@ -152,5 +157,10 @@ void* supervisor_Thread(void* args)
         }
     }
 
+    pthread_exit(0);
+}
+
+void* convoyer_Thread(void* args)
+{
     pthread_exit(0);
 }

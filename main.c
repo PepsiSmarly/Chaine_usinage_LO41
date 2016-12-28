@@ -126,8 +126,35 @@ int main(int argc, char const *argv[])
 
     printf("---------- Fin création des Arguments ----------\n\n");
 
+    /**
+     * Lancement des threads
+     */
+    printf("---------- Lancement des Threads ----------\n\n");
+
+    pthread_create(&thread_supervisor, NULL, supervisor_Thread, supervisor_args);
+    printf("lancement thread Supervisor\n");
+    pthread_create(&thread_convoyer, NULL, convoyer_Thread, convoyer_args);
+    printf("lancement thread Convoyer\n");
+
+    pthread_create(&thread_tables_1, NULL, factoryTable_Thread, factoryTable_1_args);
+    printf("lancement thread FactoryTable 1\n");
+    pthread_create(&thread_tables_2, NULL, factoryTable_Thread, factoryTable_2_args);
+    printf("lancement thread FactoryTable 2\n");
+    pthread_create(&thread_tables_3, NULL, factoryTable_Thread, factoryTable_3_args);
+    printf("lancement thread FactoryTable 3\n");
+
+    pthread_create(&thread_robot_loader, NULL, robot_loader_Thread, robot_loader_args);
+    printf("lancement thread Robot Loader\n");
+    pthread_create(&thread_robot_unloader, NULL, robot_unloader_Thread, robot_unloader_args);
+    printf("lancement thread Robot Unloader\n");
+
+    printf("---------- Fin lancement des Threads ----------\n\n");
+
+    supervisor->is_system_running = SYSTEM_NOT_RUNNING;
+
     clean_up();
-    return 0;
+
+    pthread_exit(0);
 }
 
 void clean_up()
@@ -136,6 +163,24 @@ void clean_up()
      * Attente de la fin de tous les threads avant nettoyage
      * de la mémoire (Destruction de tous les objets)
      */
+    pthread_join(thread_supervisor, NULL);
+    printf("fin thread Supervisor\n");
+    pthread_join(thread_convoyer, NULL);
+    printf("fin thread Convoyer\n");
+
+    pthread_join(thread_tables_1, NULL);
+    printf("fin thread FactoryTable 1\n");
+    pthread_join(thread_tables_2, NULL);
+    printf("fin thread FactoryTable 2\n");
+    pthread_join(thread_tables_3, NULL);
+    printf("fin thread FactoryTable 3\n");
+
+    pthread_join(thread_robot_loader, NULL);
+    printf("fin thread Robot Loader\n");
+    pthread_join(thread_robot_unloader, NULL);
+    printf("fin thread Robot Unloader\n");
+
+    printf("---------- Tous les threads sont terminés ----------\n\n");
 
     /**
      * Destruction de tous les arguments pour les threads

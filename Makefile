@@ -16,4 +16,4 @@ CXX = gcc
 NAME = usine
 
 out:
-	$(CXX) -o $(NAME) $(SOURCES) -pthread
+	$(CXX) -g -o $(NAME) $(SOURCES) -pthread
