@@ -89,6 +89,21 @@ accessible seulement dans un seul thread...)
         - Il réveille le superviseur en lui faisant un compte rendu
     - Il retourne dans un état endormi jusqu'à être réveillé
 
+- Table qui a fini l'usinage d'une pièce et qui doit la remettre sur le
+convoyeur :
+    - Fin de l'usinage de la pièce
+    - Envoi d'un compte rendu de l'usinage au Superviseur
+    - Réponse du Superviseur (attend que le convoyeur soit libre):
+        - Chargement de la pièce sur le convoyeur
+        - Ou pas... (Pas de cas donné)
+    - Retour dans l'état d'attente de nouvelle pièce
+    - ATTENTION : Si l'usinage n'est pas terminé au bout de 10 minutes
+    alors le Superviseur déclare la machine en panne mais ne stop pas le
+    système pour autant !
+    - Dans le cas ou la machine est en panne et qu'une pièce arrive pour
+    être traité par cette dernière alors cette fois le système est passé
+    dans un état de déffaillance par le Superviseur
+
 ### TODO
 - [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
     - [ ] Pour les threads regarder du côté de pthread_kill()
@@ -105,5 +120,6 @@ directement.
 - [X] Faire une méthode pour le Superviseur qui permette de le notifier
 de la fin du chargement de la pièce sur le Convoyeur que se soit un
 succès ou un échec, il devra ensuite agir en conséquence
-- [ ] Trouver le problème de la fuite de mémoire lié vraisemblablement
-aux threads...
+- [X] Trouver le problème de la fuite de mémoire lié vraisemblablement
+aux threads... (explications: cette "Fuite mémoire" n'en est pas vraiment
+une, il ne faut donc pas s'en inquiéter !)

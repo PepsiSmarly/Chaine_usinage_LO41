@@ -79,6 +79,11 @@ void* factoryTable_Thread(void* args)
 {
     FactoryTable_Args* arg = (FactoryTable_Args*)args;
 
+    while (arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
+    {
+        
+    }
+
     pthread_exit(0);
 }
 

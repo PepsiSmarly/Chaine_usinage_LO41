@@ -150,6 +150,7 @@ int main(int argc, char const *argv[])
 
     printf("---------- Fin lancement des Threads ----------\n\n");
 
+    // Provisoir
     supervisor->is_system_running = SYSTEM_NOT_RUNNING;
 
     clean_up();
@@ -235,6 +236,3 @@ void clean_up()
 
     printf("---------- Fin suppression des Objets ----------\n\n");
 }
-/**
- * TODO: Créer le Supervisor
- */
