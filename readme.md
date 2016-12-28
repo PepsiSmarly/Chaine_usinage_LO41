@@ -125,3 +125,11 @@ aux threads... (explications: cette "Fuite mémoire" n'en est pas vraiment
 une, il ne faut donc pas s'en inquiéter !)
 - [ ] Trouver la solution pour terminer les threads des robots de
 chargement/déchargement qui reste bloqué par leur monitor
+
+### Notes à moi-même
+- Pour le débug de programme :
+http://perso.ens-lyon.fr/daniel.hirschkoff/C_Caml/docs/doc_gdb.pdf
+- Pour les fuites mémoires utiliser valgrind :
+    - sudo apt-get install valgrind (sur Ubuntu)
+    - utilisation simple :
+    http://alexandre-laurent.developpez.com/articles/debogage-application/

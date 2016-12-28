@@ -183,6 +183,19 @@ void* supervisor_Thread(void* args)
         }
     }
 
+    /**
+     * Réveil des tables d'usinage qui dorment
+     */
+    factoryTable_WakeUp(arg->network->table_process_1);
+    factoryTable_WakeUp(arg->network->table_process_2);
+    factoryTable_WakeUp(arg->network->table_process_3);
+
+    /**
+     * Réveil des robots de chargement/déchargement
+     */
+    robot_WakeUp(arg->network->robot_loader, ROBOT_FAIL);
+    robot_WakeUp(arg->network->robot_unloader, ROBOT_FAIL);
+
     pthread_exit(0);
 }
 
