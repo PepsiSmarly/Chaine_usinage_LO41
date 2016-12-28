@@ -14,6 +14,7 @@
 #include "Convoyer.h"
 #include "Robot.h"
 #include "Network.h"
+#include "ThreadMethods.h"
 
 void clean_up();
 
@@ -33,6 +34,17 @@ FactoryTable* table_2;
 FactoryTable* table_3;
 Robot* robot_loader;
 Robot* robot_unloader;
+
+/**
+ * Arguments pour les différents threads
+ */
+Supervisor_Args* supervisor_args;
+
+FactoryTable_Args* factoryTable_1_args;
+FactoryTable_Args* factoryTable_2_args;
+FactoryTable_Args* factoryTable_3_args;
+Robot_Args* robot_loader_args;
+Robot_Args* robot_unloader_args;
 
 /**
  * Pour les threads des différents éléments du système
@@ -89,7 +101,6 @@ int main(int argc, char const *argv[])
     /**
      * Mise en place des threads !
      */
-    
 
     clean_up();
     return 0;

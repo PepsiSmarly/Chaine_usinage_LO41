@@ -47,6 +47,13 @@ typedef struct
 }
 Supervisor_Args;
 
+typedef struct
+{
+    Convoyer*   convoyer;
+    Network*    network;
+}
+Convoyer_Args;
+
 /**
  * Thread des tables d'usinage
  * @param args arguments
@@ -127,5 +134,22 @@ Supervisor_Args* supervisor_Args_Create(
  * @param _robot_Args les arguments à détruire
  */
 void supervisor_Args_Destroy(Supervisor_Args* _supervisor_Args);
+
+/**
+ * Permet d'initialiser tous les éléments
+ * @param  _convoyer le convoyer concerné
+ * @param  _network  le réseau (totalité du système)
+ * @return           [description]
+ */
+Convoyer_Args* convoyer_Args_Create(
+    Convoyer* _convoyer,
+    Network*  _network
+);
+
+/**
+ * Détruire les arguments
+ * @param _convoyer_Args les arguments à détruire
+ */
+void convoyer_Args_Destroy(Convoyer_Args* _convoyer_Args);
 
 #endif

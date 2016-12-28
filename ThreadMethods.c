@@ -64,6 +64,16 @@ void supervisor_Args_Destroy(Supervisor_Args* _supervisor_Args)
     free(_supervisor_Args);
 }
 
+Convoyer_Args* convoyer_Args_Create(Convoyer* _convoyer, Network*  _network)
+{
+
+}
+
+void convoyer_Args_Destroy(Convoyer_Args* _convoyer_Args)
+{
+    
+}
+
 void* robot_loader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
@@ -115,6 +125,7 @@ void* supervisor_Thread(void* args)
 
     while(arg->supervisor->is_system_running == SYSTEM_RUNNING)
     {
+        sem_wait(&arg->supervisor->padlock_piece);
         if(arg->supervisor->entering_piece != NULL)
         {
             supervisor_AppendPiece(
@@ -125,6 +136,7 @@ void* supervisor_Thread(void* args)
 
             arg->supervisor->entering_piece = NULL;
         }
+        sem_post(&arg->supervisor->padlock_piece);
 
         if(arg->supervisor->sys_state == ERROR)
         {
