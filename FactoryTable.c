@@ -10,6 +10,8 @@ FactoryTable* factoryTable_Create(int _process_code, int _position)
     ft->is_brocken = FACTORYTABLE_FALSE;
     ft->is_ready = FACTORYTABLE_FALSE;
 
+    ft->piece = NULL;
+
     pthread_mutex_init(&ft->padlock, 0);
     pthread_cond_init(&ft->is_piece_append, 0);
 
@@ -32,10 +34,25 @@ int factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _con
 {
     if(_factoryTable->piece != NULL)
     {
+        int result = convoyer_Use(_convoyer, FACTORYTABLE_LOADING_TIME);
+        if(result == CONVOYER_FAIL)
+        {
+            return FACTORYTABLE_FALSE;
+        }
 
+        _convoyer->loaded_piece = _factoryTable->piece;
+        _factoryTable->piece = NULL;
+        convoyer_Free(_convoyer);
+
+        return FACTORYTABLE_TRUE;
     }
 
     return FACTORYTABLE_FALSE;
+}
+
+void factoryTable_EnteringSleep(FactoryTable* _factoryTable)
+{
+
 }
 
 int factoryTable_WakeUp(FactoryTable* _factoryTable)

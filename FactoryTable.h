@@ -45,6 +45,14 @@
  */
 #define FACTORYTABLE_EXTRACT_TIME 50
 
+/**
+ * Représente le temps qui va être attendu par la table d'usinage pour tenter
+ * de déposer la pièce qui vient d'être usiné sur le convoyeur une fois que le
+ * compte rendu d'usinage aura été examiné par le Superviseur et que l'ordre de
+ * dépôt aura été donné par ce dernier
+ */
+#define FACTORYTABLE_LOADING_TIME 2
+
 #include <stdlib.h>
 #include <pthread.h>
 
@@ -78,6 +86,14 @@ void            factoryTable_Destroy(FactoryTable* _factoryTable);
  */
 int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
                                 Convoyer* _convoyer);
+
+/**
+ * Permet de mettre la table dans état d'attente, elle attend que le Superviseur
+ * la réveille, ce qui signifie qu'une pièce qui lui est destiné est injectée
+ * dans le système
+ * @param  _factoryTable la table à "endormir"
+ */
+void            factoryTable_EnteringSleep(FactoryTable* _factoryTable);
 
 /**
  * Permet de "réveiller" la table d'usinage pour l'arriver d'une pièce à traiter
