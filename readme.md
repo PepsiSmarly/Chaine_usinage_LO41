@@ -107,11 +107,6 @@ convoyeur :
 ### TODO
 - [ ] Mettre en place les signaux (SIGQUIT, SIGSTOP, voir si autres)
     - [ ] Pour les threads regarder du côté de pthread_kill()
-- [ ] Mettre en place les threads :
-    - [ ] Continuer/Finir le thread du Superviseur
-    - [ ] thread des tables d'usinage
-    - [ ] thread du robot de déchargement
-    - [ ] thread du Convoyeur
 - [ ] voire quoi mettre dans le fichier de configuration
 - [X] Finir la méthode factoryTable_WaitPiece
 - [X] Repenser la méthode supervisor_AppendPiece, pour donner la pièce au
@@ -123,8 +118,12 @@ succès ou un échec, il devra ensuite agir en conséquence
 - [X] Trouver le problème de la fuite de mémoire lié vraisemblablement
 aux threads... (explications: cette "Fuite mémoire" n'en est pas vraiment
 une, il ne faut donc pas s'en inquiéter !)
-- [ ] Trouver la solution pour terminer les threads des robots de
+- [X] Trouver la solution pour terminer les threads des robots de
 chargement/déchargement qui reste bloqué par leur monitor
+- [ ] Faire le thread du robot de déchargment (assez proche de
+celui de chargement)
+- [ ] Faire le thread des tables d'usinage
+- [ ] Faire le thread du convoyeur
 
 ### Notes à moi-même
 - Pour le débug de programme :

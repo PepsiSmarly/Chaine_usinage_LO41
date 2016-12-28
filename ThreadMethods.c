@@ -97,10 +97,12 @@ void* robot_loader_Thread(void* args)
     {
         robot_WaitWork(arg->robot);
         printf("Robot Loader : Réveille !\n");
+        fflush(stdout);
 
         if(arg->robot->work_to_perform == ROBOT_SUCCESS)
         {
             printf("Robot Loader : Travail disponible\n");
+            fflush(stdout);
 
             while(arg->network->convoyer->loaded_piece != NULL
                 && waited_time < ROBOT_LOAD_TIMEOUT)
@@ -149,7 +151,6 @@ void* supervisor_Thread(void* args)
 
     while(arg->supervisor->is_system_running == SYSTEM_RUNNING)
     {
-        printf("Supervisor run !!!!!!!!\n");
         fflush(stdout);
         sem_wait(&arg->supervisor->padlock_piece);
         if(arg->supervisor->entering_piece != NULL)
