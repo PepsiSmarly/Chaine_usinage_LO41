@@ -39,7 +39,7 @@ Robot* robot_unloader;
  * Arguments pour les différents threads
  */
 Supervisor_Args* supervisor_args;
-
+Convoyer_Args* convoyer_args;
 FactoryTable_Args* factoryTable_1_args;
 FactoryTable_Args* factoryTable_2_args;
 FactoryTable_Args* factoryTable_3_args;
@@ -64,6 +64,8 @@ int main(int argc, char const *argv[])
     /**
      * Initialisation de tous les éléments
      */
+    printf("---------- Création des Objets ----------\n");
+
     config = config_Create("config.txt");
 
     network = network_Create();
@@ -98,9 +100,31 @@ int main(int argc, char const *argv[])
     network->robot_unloader = robot_unloader;
     printf("attribution processed\n");
 
+    printf("---------- Fin création des Objets ----------\n\n");
+
     /**
-     * Mise en place des threads !
+     * Construction de tous les arguments pour les threads
      */
+    printf("---------- Création des Arguments ----------\n");
+
+    supervisor_args = supervisor_Args_Create(supervisor, network);
+    printf("robot supervisor_args create\n");
+    convoyer_args = convoyer_Args_Create(convoyer, network);
+    printf("robot convoyer_args create\n");
+
+    factoryTable_1_args = factoryTable_Args_Create(table_1, network);
+    printf("robot factoryTable_1_args create\n");
+    factoryTable_2_args = factoryTable_Args_Create(table_2, network);
+    printf("robot factoryTable_2_args create\n");
+    factoryTable_3_args = factoryTable_Args_Create(table_3, network);
+    printf("robot factoryTable_3_args create\n");
+
+    robot_loader_args = robot_Args_Create(robot_loader, network);
+    printf("robot robot_loader_args create\n");
+    robot_unloader_args = robot_Args_Create(robot_unloader, network);
+    printf("robot robot_unloader_args create\n");
+
+    printf("---------- Fin création des Arguments ----------\n\n");
 
     clean_up();
     return 0;
@@ -108,6 +132,40 @@ int main(int argc, char const *argv[])
 
 void clean_up()
 {
+    /**
+     * Attente de la fin de tous les threads avant nettoyage
+     * de la mémoire (Destruction de tous les objets)
+     */
+
+    /**
+     * Destruction de tous les arguments pour les threads
+     */
+    printf("---------- Suppression des Arguments ----------\n");
+
+    supervisor_Args_Destroy(supervisor_args);
+    printf("free supervisor_args\n");
+    convoyer_Args_Destroy(convoyer_args);
+    printf("free convoyer_args\n");
+
+    factoryTable_Args_Destroy(factoryTable_1_args);
+    printf("free factoryTable_1_args\n");
+    factoryTable_Args_Destroy(factoryTable_2_args);
+    printf("free factoryTable_2_args\n");
+    factoryTable_Args_Destroy(factoryTable_3_args);
+    printf("free factoryTable_3_args\n");
+
+    robot_Args_Destroy(robot_loader_args);
+    printf("free robot_loader_args\n");
+    robot_Args_Destroy(robot_unloader_args);
+    printf("free robot_unloader_args\n");
+
+    printf("---------- Fin suppression des Arguments ----------\n\n");
+
+    /**
+     * Destruction de tous les objets
+     */
+    printf("---------- Suppression des Objets ----------\n");
+
     config_Destroy(config);
     printf("free config\n");
 
@@ -129,6 +187,8 @@ void clean_up()
     printf("free robot loader\n");
     robot_Destroy(robot_unloader);
     printf("free robot unloader\n");
+
+    printf("---------- Fin suppression des Objets ----------\n\n");
 }
 /**
  * TODO: Créer le Supervisor
