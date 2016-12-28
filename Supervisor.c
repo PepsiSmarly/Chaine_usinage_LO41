@@ -5,7 +5,7 @@ Supervisor* supervisor_Create()
     Supervisor* s = malloc(sizeof(Supervisor));
 
     s->sys_state = OK;
-    s->sys_state = CONVOYER_FREE;
+    s->convoyer_state = CONVOYER_FREE;
     s->is_system_running = SYSTEM_RUNNING;
 
     s->last_target = NULL;
@@ -48,7 +48,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
         }
 
         robot_SetPiece(_network->robot_loader, _piece);
-        robot_WakeUp(_network->robot_loader);
+        robot_WakeUp(_network->robot_loader, ROBOT_SUCCESS);
 
         return SUPERVISOR_SUCCESS;
     }

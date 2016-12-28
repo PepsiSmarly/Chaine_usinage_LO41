@@ -92,6 +92,9 @@ int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
  * la réveille, ce qui signifie qu'une pièce qui lui est destiné est injectée
  * dans le système
  * @param  _factoryTable la table à "endormir"
+ * @return FACTORYTABLE_TRUE dans le cas ou la table s'est bien endormi et à été
+ *                           réveillé par le Superviseur
+ *         FACTORYTABLE_FALSE dans le cas ou la table ne s'est pas endormi pour 
  */
 int             factoryTable_EnteringSleep(FactoryTable* _factoryTable);
 

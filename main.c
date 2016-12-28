@@ -8,6 +8,7 @@
 #define SYSTEME_RUN_FALSE   0
 
 #include <pthread.h>
+#include <unistd.h>
 
 #include "Config.h"
 #include "Supervisor.h"
@@ -151,6 +152,7 @@ int main(int argc, char const *argv[])
     printf("---------- Fin lancement des Threads ----------\n\n");
 
     // Provisoir
+    sleep(5);
     supervisor->is_system_running = SYSTEM_NOT_RUNNING;
 
     clean_up();

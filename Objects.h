@@ -15,6 +15,7 @@
 
 #include <semaphore.h>
 #include <sys/time.h>
+#include <stdio.h>
 
 /**
  * Les différents états possibles du système
@@ -74,6 +75,8 @@ FactoryTable;
  */
 typedef struct
 {
+    int work_to_perform;
+
     Piece* piece;
     sem_t  padlock_piece;
 

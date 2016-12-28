@@ -4,6 +4,7 @@ Robot* robot_Create()
 {
     Robot* r = malloc(sizeof(Robot));
 
+    r->work_to_perform = ROBOT_FAIL;
     r->piece = NULL;
     sem_init(&r->padlock_piece, 0, 1);
 
@@ -59,13 +60,16 @@ int robot_UnloadConvoyer(Robot* _robot, Convoyer* _convoyer)
 void robot_WaitWork(Robot* _robot)
 {
     pthread_mutex_lock(&_robot->padlock);
+    _robot->work_to_perform = ROBOT_FAIL;
     pthread_cond_wait(&_robot->work_available, &_robot->padlock);
 }
 
-void robot_WakeUp(Robot* _robot)
+void robot_WakeUp(Robot* _robot, int _work_to_perform)
 {
     pthread_mutex_lock(&_robot->padlock);
+    printf("Passage WakeUp\n");
     pthread_cond_signal(&_robot->work_available);
+    _robot->work_to_perform = _work_to_perform;
     pthread_mutex_unlock(&_robot->padlock);
 }
 

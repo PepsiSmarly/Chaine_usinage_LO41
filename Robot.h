@@ -62,7 +62,7 @@ int     robot_UnloadConvoyer(Robot* _robot, Convoyer* _convoyer);
 
 /**
  * Permet de mettre le thread du robot dans un état d'attente. Tant que personne
- * ne lui signal qu'il doit travailler (avec la méthode robot_WaitWork), il ne
+ * ne lui signal qu'il doit travailler (avec la méthode robot_WakeUp), il ne
  * sort pas de cet état
  * @param  _robot le robot à faire dormir
  */
@@ -72,7 +72,7 @@ void    robot_WaitWork(Robot* _robot);
  * Permet de réveiller le robot pour qu'il se mette au travail
  * @param  _robot le robot à réveiller
  */
-void    robot_WakeUp(Robot* _robot);
+void    robot_WakeUp(Robot* _robot, int _work_to_perform);
 
 /**
  * Permet d'attribuer une pièce au robot en protégeant le tout par un semaphore

@@ -123,3 +123,5 @@ succès ou un échec, il devra ensuite agir en conséquence
 - [X] Trouver le problème de la fuite de mémoire lié vraisemblablement
 aux threads... (explications: cette "Fuite mémoire" n'en est pas vraiment
 une, il ne faut donc pas s'en inquiéter !)
+- [ ] Trouver la solution pour terminer les threads des robots de
+chargement/déchargement qui reste bloqué par leur monitor

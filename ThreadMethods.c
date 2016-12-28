@@ -81,7 +81,7 @@ void* factoryTable_Thread(void* args)
 
     while (arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
-        
+
     }
 
     pthread_exit(0);
@@ -96,37 +96,43 @@ void* robot_loader_Thread(void* args)
     while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         robot_WaitWork(arg->robot);
+        printf("Robot Loader : Réveille !\n");
 
-        while(arg->network->convoyer->loaded_piece != NULL
-            && waited_time < ROBOT_LOAD_TIMEOUT)
+        if(arg->robot->work_to_perform == ROBOT_SUCCESS)
         {
-            waited_time += clock() / CLOCKS_PER_SEC;
+            printf("Robot Loader : Travail disponible\n");
+
+            while(arg->network->convoyer->loaded_piece != NULL
+                && waited_time < ROBOT_LOAD_TIMEOUT)
+            {
+                waited_time += clock() / CLOCKS_PER_SEC;
+            }
+
+            if(waited_time >= ROBOT_LOAD_TIMEOUT)
+            {
+                // signaler échec au superviseur
+                supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
+
+                continue;
+            }
+            results = convoyer_Use(arg->network->convoyer,
+                ROBOT_LOAD_TIMEOUT - (int)waited_time);
+            if(results == CONVOYER_FAIL)
+            {
+                // Signaler au superviseur l'échec
+                supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
+
+                continue;
+            }
+
+            arg->network->convoyer->loaded_piece = arg->robot->piece;
+            arg->network->convoyer->position = ROBOT_LOADER_POS;
+            convoyer_Free(arg->network->convoyer);
+            arg->robot->piece = NULL;
+
+            // Signaler succès au superviseur
+            supervisor_LoadingReport(arg->network->supervisor, ROBOT_SUCCESS);
         }
-
-        if(waited_time >= ROBOT_LOAD_TIMEOUT)
-        {
-            // signaler échec au superviseur
-            supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
-
-            continue;
-        }
-        results = convoyer_Use(arg->network->convoyer,
-            ROBOT_LOAD_TIMEOUT - (int)waited_time);
-        if(results == CONVOYER_FAIL)
-        {
-            // Signaler au superviseur l'échec
-            supervisor_LoadingReport(arg->network->supervisor, ROBOT_FAIL);
-
-            continue;
-        }
-
-        arg->network->convoyer->loaded_piece = arg->robot->piece;
-        arg->network->convoyer->position = ROBOT_LOADER_POS;
-        convoyer_Free(arg->network->convoyer);
-        arg->robot->piece = NULL;
-
-        // Signaler succès au superviseur
-        supervisor_LoadingReport(arg->network->supervisor, ROBOT_SUCCESS);
     }
 
     pthread_exit(0);
@@ -143,6 +149,8 @@ void* supervisor_Thread(void* args)
 
     while(arg->supervisor->is_system_running == SYSTEM_RUNNING)
     {
+        printf("Supervisor run !!!!!!!!\n");
+        fflush(stdout);
         sem_wait(&arg->supervisor->padlock_piece);
         if(arg->supervisor->entering_piece != NULL)
         {
@@ -159,6 +167,19 @@ void* supervisor_Thread(void* args)
         if(arg->supervisor->sys_state == ERROR)
         {
             arg->supervisor->is_system_running = SYSTEM_NOT_RUNNING;
+
+            /**
+             * Réveil des tables d'usinage qui dorment
+             */
+            factoryTable_WakeUp(arg->network->table_process_1);
+            factoryTable_WakeUp(arg->network->table_process_2);
+            factoryTable_WakeUp(arg->network->table_process_3);
+
+            /**
+             * Réveil des robots de chargement/déchargement
+             */
+            robot_WakeUp(arg->network->robot_loader, ROBOT_FAIL);
+            robot_WakeUp(arg->network->robot_unloader, ROBOT_FAIL);
         }
     }
 

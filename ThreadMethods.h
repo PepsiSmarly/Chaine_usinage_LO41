@@ -9,6 +9,7 @@
 #define THREAD_METHODS_H
 
 #include <pthread.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "Network.h"
