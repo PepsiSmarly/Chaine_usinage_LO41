@@ -50,9 +50,18 @@ int factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _con
     return FACTORYTABLE_FALSE;
 }
 
-void factoryTable_EnteringSleep(FactoryTable* _factoryTable)
+int factoryTable_EnteringSleep(FactoryTable* _factoryTable)
 {
+    pthread_mutex_lock(&_factoryTable->padlock);
+    if(_factoryTable->is_in_process == FACTORYTABLE_TRUE)
+    {
+        pthread_cond_wait(&_factoryTable->is_piece_append, &_factoryTable->padlock);
 
+        return FACTORYTABLE_TRUE;
+    }
+
+    pthread_mutex_unlock(&_factoryTable->padlock);
+    return FACTORYTABLE_FALSE;
 }
 
 int factoryTable_WakeUp(FactoryTable* _factoryTable)

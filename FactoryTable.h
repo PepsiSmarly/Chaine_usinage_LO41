@@ -93,7 +93,7 @@ int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
  * dans le système
  * @param  _factoryTable la table à "endormir"
  */
-void            factoryTable_EnteringSleep(FactoryTable* _factoryTable);
+int             factoryTable_EnteringSleep(FactoryTable* _factoryTable);
 
 /**
  * Permet de "réveiller" la table d'usinage pour l'arriver d'une pièce à traiter
