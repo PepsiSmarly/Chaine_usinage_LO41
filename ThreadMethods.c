@@ -108,7 +108,17 @@ void* factoryTable_Thread(void* args)
             continue;
         }
 
-        
+        result = convoyer_Use(arg->network->convoyer, FACTORYTABLE_LOADING_TIME);
+        if(result == CONVOYER_FAIL)
+        {
+            supervisor_FactoryTableReport(arg->network->supervisor,
+                arg->network->convoyer, FACTORYTABLE_FALSE);
+            continue;
+        }
+
+        arg->network->convoyer->loaded_piece = arg->factoryTable->piece;
+        arg->factoryTable->piece = NULL;
+        convoyer_Free(arg->network->convoyer);
     }
 
     pthread_exit(0);

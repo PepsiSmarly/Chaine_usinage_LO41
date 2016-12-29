@@ -66,7 +66,6 @@ void robot_WaitWork(Robot* _robot)
 
 void robot_WakeUp(Robot* _robot, int _work_to_perform)
 {
-    printf("Passage WakeUp\n");
     pthread_mutex_lock(&_robot->padlock);
     pthread_cond_signal(&_robot->work_available);
     _robot->work_to_perform = _work_to_perform;
