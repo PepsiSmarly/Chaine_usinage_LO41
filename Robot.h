@@ -26,6 +26,12 @@
  */
 #define ROBOT_LOAD_TIMEOUT 20
 
+/**
+ * Le temps maximum que le robot de chargement va passer à essayer de
+ * décharger la pièce du convoyeur avant d'abandonner
+ */
+#define ROBOT_UNLOAD_TIMEOUT 30
+
 #include "Objects.h"
 #include "Piece.h"
 #include "Convoyer.h"

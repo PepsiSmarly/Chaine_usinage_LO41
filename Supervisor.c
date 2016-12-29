@@ -94,7 +94,7 @@ void supervisor_changeConvoyerState(Supervisor* _supervisor, int _state)
     _supervisor->convoyer_state = _state;
 }
 
-void supervisor_LoadingReport(Supervisor* _supervisor, int _code)
+void supervisor_RobotReport(Supervisor* _supervisor, int _code)
 {
     if(_code == ROBOT_FAIL)
     {

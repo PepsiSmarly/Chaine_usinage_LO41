@@ -76,7 +76,7 @@ accessible seulement dans un seul thread...)
     - remettre la pièce sur le tapis
     - se rendormir en attendant d'être de nouveau réveillé par le Superviseur
 
-- Robot chargeur:
+- Robot chargeur :
     - Etre endormi tant qu'il n'a pas de travail
     - Réveillé par le superviseur car une pièce arrive dans le système:
         - Ce qui pour effet de faire entrer le superviseur dans un état de
@@ -88,6 +88,18 @@ accessible seulement dans un seul thread...)
     - Il libère le convoyeur pour que les autres puissent s'en servir:
         - Il réveille le superviseur en lui faisant un compte rendu
     - Il retourne dans un état endormi jusqu'à être réveillé
+
+- Robot déchargeur :
+    - Etre endormi tant que pas de travail disponible
+    - Réveillé par le superviseur lorsque qu'une pièce sort d'une table
+    d'usinage
+    - Attendre que la pièce se présente à hauteur du robot de déchargement
+    - Décharger la pièce du convoyeur :
+        - Si au bout de 30 secondes la pièce n'est toujours pas ôtée du
+        convoyeur alors un le robot signal une erreur au superviseur qui
+        passe le système en défaillance
+    - Envoyer un rapport au Superviseur
+    - Retourner dans l'état d'attente de travail
 
 - Table qui a fini l'usinage d'une pièce et qui doit la remettre sur le
 convoyeur :

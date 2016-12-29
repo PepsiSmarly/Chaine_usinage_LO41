@@ -41,7 +41,7 @@ void            supervisor_Destroy(Supervisor* _supervisor);
  * @param  _supervisor le Supervisor du système dans laquelle la pièce est
  *                     introduite
  * @param  _piece      la pièce à introduire
- * @return             succès ou non
+ * @return             succès (SUPERVISOR_SUCCESS) ou non (SUPERVISOR_FAIL)
  */
 int             supervisor_AppendPiece(Supervisor* _supervisor,
                                         Piece* _piece,
@@ -65,13 +65,13 @@ int             supervisor_DetermineFactoryTable(Supervisor* _supervisor,
 void            supervisor_changeConvoyerState(Supervisor* _supervisor, int _state);
 
 /**
- * Permet au robot de chargement de rendre compte du chergement d'une pièce sur
+ * Permet au robot de rendre compte du chargement/déchargement d'une pièce sur
  * le Convoyeur
  * @param  _supervisor le Superviseur à prévenir
  * @param  _code       le code de compte rendu :
- *                     - ROBOT_SUCCESS en cas de succès de chargement
- *                     - ROBOT_FAIL en cas d'échec de chargement
+ *                     - ROBOT_SUCCESS en cas de succès
+ *                     - ROBOT_FAIL en cas d'échec
  */
-void            supervisor_LoadingReport(Supervisor* _supervisor, int _code);
+void            supervisor_RobotReport(Supervisor* _supervisor, int _code);
 
 #endif
