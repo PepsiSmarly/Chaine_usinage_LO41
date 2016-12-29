@@ -101,3 +101,14 @@ void supervisor_RobotReport(Supervisor* _supervisor, int _code)
         _supervisor->sys_state = ERROR;
     }
 }
+
+int supervisor_FactoryTableReport(Supervisor* _supervisor, int _code)
+{
+    if(_code == FACTORYTABLE_FALSE)
+    {
+        _supervisor->sys_state = ERROR;
+        return SUPERVISOR_FAIL;
+    }
+
+    return SUPERVISOR_SUCCESS;
+}

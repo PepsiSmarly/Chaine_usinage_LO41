@@ -16,6 +16,7 @@
 #include "Network.h"
 #include "Robot.h"
 #include "Convoyer.h"
+#include "FactoryTable.h"
 
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec

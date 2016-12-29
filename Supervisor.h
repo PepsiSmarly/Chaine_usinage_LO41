@@ -74,4 +74,16 @@ void            supervisor_changeConvoyerState(Supervisor* _supervisor, int _sta
  */
 void            supervisor_RobotReport(Supervisor* _supervisor, int _code);
 
+/**
+ * Permet au tables d'usinage de faire parvenir un rapport d'usinage d'une
+ * pièce
+ * @param  _supervisor le Superviseur à prévenir
+ * @param  _code       le code de compte rendu :
+ *                     - FACTORYTABLE_TRUE en cas de succès
+ *                     - FACTORYTABLE_FALSE en cas d'échec
+ * @return             SUPERVISOR_SUCCESS en cas de succès
+ *                     SUPERVISOR_FAIL en cas d'échec
+ */
+int             supervisor_FactoryTableReport(Supervisor* _supervisor, int _code);
+
 #endif

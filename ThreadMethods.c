@@ -81,7 +81,11 @@ void* factoryTable_Thread(void* args)
 
     while (arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
-
+        int result = factoryTable_EnteringSleep(arg->factoryTable);
+        if(result == FACTORYTABLE_FALSE)
+        {
+            
+        }
     }
 
     pthread_exit(0);
