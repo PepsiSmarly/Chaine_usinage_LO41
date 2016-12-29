@@ -9,11 +9,13 @@
 #define THREAD_METHODS_H
 
 #include <pthread.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "Network.h"
 #include "Robot.h"
+#include "Convoyer.h"
 
 /**
  * Structure à utiliser en argument lors de l'utilisation de pthread_create avec

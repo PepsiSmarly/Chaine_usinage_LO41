@@ -5,6 +5,7 @@ Convoyer* convoyer_Create()
     Convoyer* c = malloc(sizeof(Convoyer));
 
     c->position = CONVOYER_NO_PIECE_POS;
+    c->loaded_piece = NULL;
 
     sem_init(&c->padlock, 0, CONVOYER_CAPACITY);
     return c;

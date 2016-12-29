@@ -132,10 +132,10 @@ aux threads... (explications: cette "Fuite mémoire" n'en est pas vraiment
 une, il ne faut donc pas s'en inquiéter !)
 - [X] Trouver la solution pour terminer les threads des robots de
 chargement/déchargement qui reste bloqué par leur monitor
-- [ ] Faire le thread du robot de déchargment (assez proche de
+- [X] Faire le thread du robot de déchargment (assez proche de
 celui de chargement)
 - [ ] Faire le thread des tables d'usinage
-- [ ] Faire le thread du convoyeur
+- [X] Faire le thread du convoyeur
 
 ### Notes à moi-même
 - Pour le débug de programme :

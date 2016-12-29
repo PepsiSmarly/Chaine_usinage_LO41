@@ -246,5 +246,27 @@ void* supervisor_Thread(void* args)
 
 void* convoyer_Thread(void* args)
 {
+    Convoyer_Args* arg = (Convoyer_Args*)args;
+
+    while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
+    {
+        printf("Convoyeur : Pas de pièce\n");
+        if(arg->convoyer->loaded_piece != NULL)
+        {
+            printf("Convoyeur : Position de la pièce sur le convoyeur : %d\n",
+                arg->convoyer->position);
+            fflush(stdout);
+            if(arg->convoyer->position < 100)
+            {
+                convoyer_Move(arg->convoyer);
+            }
+            else if(arg->convoyer->position > 100)
+            {
+                arg->convoyer->position = 100;
+            }
+        }
+        usleep(CONVOYER_MOVE_TIME);
+    }
+
     pthread_exit(0);
 }

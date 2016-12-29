@@ -23,7 +23,7 @@
  * Nombre de pièce que peut transporter le convoyeur en même temps
  */
 #define CONVOYER_CAPACITY       1
-#define CONVOYER_SPEED          2
+#define CONVOYER_SPEED          1
 
 /**
  * Pour indiquer si le convoyeur est prit ou lacher lors de chargement
@@ -35,6 +35,10 @@
 #define CONVOYER_SUCCESS    1
 #define CONVOYER_FAIL       0
 
+/**
+ * Temps en microsecondes entre deux mouvement du tapis
+ */
+#define CONVOYER_MOVE_TIME 200000
 /**
  * Créer un convoyer
  * @return le convoyer crée
