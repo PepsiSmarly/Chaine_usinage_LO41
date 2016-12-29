@@ -68,6 +68,7 @@ void robot_WakeUp(Robot* _robot, int _work_to_perform)
 {
     pthread_mutex_lock(&_robot->padlock);
     pthread_cond_signal(&_robot->work_available);
+    printf("Robot : Réveil\n");
     _robot->work_to_perform = _work_to_perform;
     pthread_mutex_unlock(&_robot->padlock);
 }

@@ -34,6 +34,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
 
     if(result == SUPERVISOR_SUCCESS)
     {
+        printf("Superviseur : Table d'usinage déterminée\n");
         if(_supervisor->last_target == NULL)
         {
             return SUPERVISOR_FAIL;
@@ -48,6 +49,7 @@ int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _net
         }
 
         robot_SetPiece(_network->robot_loader, _piece);
+        printf("Superviseur : Insertion de la nouvelle pièce dans le robot de chargement\n");
         robot_WakeUp(_network->robot_loader, ROBOT_SUCCESS);
 
         return SUPERVISOR_SUCCESS;

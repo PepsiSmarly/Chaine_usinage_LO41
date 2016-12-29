@@ -242,6 +242,8 @@ void* supervisor_Thread(void* args)
         sem_wait(&arg->supervisor->padlock_piece);
         if(arg->supervisor->entering_piece != NULL)
         {
+            printf("Superviseur : Entrée d'une pièce dans le système\n");
+
             int result = supervisor_AppendPiece(
                 arg->supervisor,
                 arg->supervisor->entering_piece,

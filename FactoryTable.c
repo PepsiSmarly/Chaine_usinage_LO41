@@ -76,6 +76,8 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
     {
         return FACTORYTABLE_FALSE;
     }
+    printf("FactoryTable %d : Réveil\n", _factoryTable->process_code);
+
     return FACTORYTABLE_TRUE;
 }
 

@@ -36,6 +36,8 @@ FactoryTable* table_3;
 Robot* robot_loader;
 Robot* robot_unloader;
 
+Piece* p;
+
 /**
  * Arguments pour les différents threads
  */
@@ -152,7 +154,11 @@ int main(int argc, char const *argv[])
     printf("---------- Fin lancement des Threads ----------\n\n");
 
     // Provisoir
-    sleep(5);
+    p = piece_Create(10, FACTORY_PROCESS_CODE_2);
+    supervisor->entering_piece = p;
+    printf("Supervisor => running : %d\n", supervisor->is_system_running);
+    sleep(10);
+    printf("STOP SYSTEM\n\n");
     supervisor->is_system_running = SYSTEM_NOT_RUNNING;
 
     clean_up();
@@ -237,4 +243,6 @@ void clean_up()
     printf("free robot unloader\n");
 
     printf("---------- Fin suppression des Objets ----------\n\n");
+
+    piece_Destroy(p);
 }
