@@ -81,9 +81,12 @@ void            supervisor_RobotReport(Supervisor* _supervisor, int _code);
  * @param  _code       le code de compte rendu :
  *                     - FACTORYTABLE_TRUE en cas de succès
  *                     - FACTORYTABLE_FALSE en cas d'échec
+ * @param  _convoyer   le convoyeur
  * @return             SUPERVISOR_SUCCESS en cas de succès
  *                     SUPERVISOR_FAIL en cas d'échec
  */
-int             supervisor_FactoryTableReport(Supervisor* _supervisor, int _code);
+int             supervisor_FactoryTableReport(Supervisor* _supervisor,
+                                                Convoyer* _convoyer,
+                                                int _code);
 
 #endif

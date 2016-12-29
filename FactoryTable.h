@@ -53,6 +53,11 @@
  */
 #define FACTORYTABLE_LOADING_TIME 2
 
+/**
+ * Temps maximum possible de l'usinage d'une pièce en secondes
+ */
+#define FACTORYTABLE_MAX_PROCESS_TIME 600
+
 #include <stdlib.h>
 #include <pthread.h>
 
@@ -94,7 +99,7 @@ int             factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable,
  * @param  _factoryTable la table à "endormir"
  * @return FACTORYTABLE_TRUE dans le cas ou la table s'est bien endormi et à été
  *                           réveillé par le Superviseur
- *         FACTORYTABLE_FALSE dans le cas ou la table ne s'est pas endormi pour 
+ *         FACTORYTABLE_FALSE dans le cas ou la table ne s'est pas endormi pour
  */
 int             factoryTable_EnteringSleep(FactoryTable* _factoryTable);
 

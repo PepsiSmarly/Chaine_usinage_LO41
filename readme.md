@@ -101,6 +101,18 @@ accessible seulement dans un seul thread...)
     - Envoyer un rapport au Superviseur
     - Retourner dans l'état d'attente de travail
 
+- Usinage d'une pièce sur une table d'usinage :
+    - Attendre que la pièce soit en bonne position sur le convoyeur :
+        - Si la pièce n'est pas récupéré au bout de 50 secondes, alors
+        une erreur est levé au Superviseur
+    - Déterminer un temps d'usinage aléatoire
+    - Attendre le temps déterminé
+    - Marquer la pièce comme étant usiné
+    - Envoyer un rapport positif au Superviseur
+    - Attendre son accord pour poser la pièce sur convoyeur
+    - Poser la pièce sur le convoyeur
+    - Revenir dans un état d'attente de travail
+
 - Table qui a fini l'usinage d'une pièce et qui doit la remettre sur le
 convoyeur :
     - Fin de l'usinage de la pièce

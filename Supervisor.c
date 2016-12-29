@@ -102,7 +102,7 @@ void supervisor_RobotReport(Supervisor* _supervisor, int _code)
     }
 }
 
-int supervisor_FactoryTableReport(Supervisor* _supervisor, int _code)
+int supervisor_FactoryTableReport(Supervisor* _supervisor, Convoyer* _convoyer, int _code)
 {
     if(_code == FACTORYTABLE_FALSE)
     {
@@ -110,5 +110,7 @@ int supervisor_FactoryTableReport(Supervisor* _supervisor, int _code)
         return SUPERVISOR_FAIL;
     }
 
+    while(_convoyer->loaded_piece != NULL && _supervisor->is_system_running)
+    {}
     return SUPERVISOR_SUCCESS;
 }

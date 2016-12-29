@@ -84,8 +84,31 @@ void* factoryTable_Thread(void* args)
         int result = factoryTable_EnteringSleep(arg->factoryTable);
         if(result == FACTORYTABLE_FALSE)
         {
-            
+            supervisor_FactoryTableReport(arg->network->supervisor,
+                arg->network->convoyer, FACTORYTABLE_FALSE);
+            continue;
         }
+
+        result = factoryTable_WaitPiece(arg->factoryTable,
+            arg->network->convoyer);
+        if(result == FACTORYTABLE_FALSE)
+        {
+            supervisor_FactoryTableReport(arg->network->supervisor,
+                arg->network->convoyer, FACTORYTABLE_FALSE);
+            continue;
+        }
+
+        int time_to_process = rand() % FACTORYTABLE_MAX_PROCESS_TIME;
+        sleep(time_to_process);
+
+        result = supervisor_FactoryTableReport(arg->network->supervisor,
+            arg->network->convoyer, FACTORYTABLE_TRUE);
+        if(result == SUPERVISOR_FAIL)
+        {
+            continue;
+        }
+
+        
     }
 
     pthread_exit(0);
