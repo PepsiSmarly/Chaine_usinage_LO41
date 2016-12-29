@@ -146,8 +146,10 @@ une, il ne faut donc pas s'en inquiéter !)
 chargement/déchargement qui reste bloqué par leur monitor
 - [X] Faire le thread du robot de déchargment (assez proche de
 celui de chargement)
-- [ ] Faire le thread des tables d'usinage
+- [X] Faire le thread des tables d'usinage
 - [X] Faire le thread du convoyeur
+- [ ] Régler problème de changement de valeur aléatoire pour
+supervisor->is_system_running
 
 ### Notes à moi-même
 - Pour le débug de programme :

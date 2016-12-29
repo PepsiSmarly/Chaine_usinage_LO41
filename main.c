@@ -129,6 +129,8 @@ int main(int argc, char const *argv[])
 
     printf("---------- Fin création des Arguments ----------\n\n");
 
+    printf("Supervisor => running : %d\n\n", supervisor->is_system_running);
+
     /**
      * Lancement des threads
      */

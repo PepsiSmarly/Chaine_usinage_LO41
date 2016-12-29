@@ -99,6 +99,7 @@ void* factoryTable_Thread(void* args)
         }
 
         int time_to_process = rand() % FACTORYTABLE_MAX_PROCESS_TIME;
+        printf("FactoryTable %d : temps d'usinage => %d secondes\n", arg->factoryTable->process_code, time_to_process);
         sleep(time_to_process);
 
         result = supervisor_FactoryTableReport(arg->network->supervisor,
