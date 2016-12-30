@@ -273,5 +273,9 @@ void exit_func(int sig)
 
     pthread_kill(thread_robot_loader, SIGKILL);
     pthread_kill(thread_robot_unloader, SIGKILL);
+
     signal(SIGINT, exit_func);
+    signal(SIGSTOP, exit_func);
+    signal(SIGQUIT, exit_func);
+    signal(SIGTSTP, exit_func);
 }
