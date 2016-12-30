@@ -115,7 +115,7 @@ int supervisor_FactoryTableReport(Supervisor* _supervisor, Convoyer* _convoyer, 
         return SUPERVISOR_FAIL;
     }
 
-    while(_convoyer->loaded_piece != NULL && _supervisor->is_system_running)
-    {}
+    while(_convoyer->loaded_piece != NULL && _supervisor->is_system_running);
+
     return SUPERVISOR_SUCCESS;
 }

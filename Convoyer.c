@@ -22,14 +22,27 @@ void convoyer_Destroy(Convoyer* _convoyer)
 
 int convoyer_Use(Convoyer* _convoyer, int _timeout_s)
 {
-    struct timespec ts;
-    ts.tv_sec = _timeout_s;
+    double waited_time = 0;
 
-    int result = sem_timedwait(&_convoyer->padlock, &ts);
+    printf("Convoyer : Tentative de monopolisation pendant %d secondes\n", _timeout_s);
+    fflush(stdout);
+
+    int result;
+    while((result = sem_trywait(&_convoyer->padlock)) == -1 && waited_time < _timeout_s)
+    {
+        printf("Convoyer : Impossible de monopoliser pour le moment...\n");
+        fflush(stdout);
+        continue;
+    }
+    printf("Convoyer : sem_timedwait code : %d\n", result);
     if(result != 0)
     {
+        printf("Convoyer : Attente pour utilisation dépassé\n");
+        fflush(stdout);
         return CONVOYER_FAIL;
     }
+    printf("Convoyer : Succès de la demande d'utilisation\n");
+    fflush(stdout);
     return CONVOYER_SUCCESS;
 }
 

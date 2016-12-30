@@ -85,23 +85,32 @@ int factoryTable_WakeUp(FactoryTable* _factoryTable)
 
 int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
 {
-    struct timeval before_time, after_time;
-    gettimeofday(&before_time, NULL);
+    double waited_time_start = 0;
+    double waited_time_end = 0;
+    double waited_time_total = 0;
 
     int lower_mark = _factoryTable->position - FACTORYTABLE_CONVOYER_INTERVAL;
     int upper_mark = _factoryTable->position + FACTORYTABLE_CONVOYER_INTERVAL;
 
-    if(_convoyer->position >= lower_mark && _convoyer->position <= upper_mark)
+    while(_convoyer->position < lower_mark && waited_time_total < FACTORYTABLE_EXTRACT_TIME)
     {
-        int result = convoyer_Use(_convoyer, FACTORYTABLE_EXTRACT_TIME -
-            (_factoryTable->waited_time / 1000000));
+        waited_time_start = clock();
+        waited_time_end = clock();
+        waited_time_total += (waited_time_end - waited_time_start) / CLOCKS_PER_SEC;
+        continue;
+    }
+
+    printf("FactoryTable %d : Temps attendu de %lf secondes\n", _factoryTable->process_code, waited_time_total);
+
+    if(_convoyer->position >= lower_mark && _convoyer->position <= upper_mark
+            && waited_time_total < FACTORYTABLE_EXTRACT_TIME)
+    {
+        printf("FactoryTable %d : Temps d'attente de %lf secondes\n", _factoryTable->process_code, waited_time_total);
+        int result = convoyer_Use(_convoyer, FACTORYTABLE_EXTRACT_TIME - waited_time_total);
 
         if(result == CONVOYER_FAIL)
         {
-            gettimeofday(&after_time, NULL);
-            _factoryTable->waited_time +=
-                before_time.tv_usec - after_time.tv_usec;
-
+            printf("FactoryTable %d : Impossible de prendre le convoyeur\n", _factoryTable->process_code);
             return FACTORYTABLE_FALSE;
         }
 
@@ -115,9 +124,7 @@ int factoryTable_WaitPiece(FactoryTable* _factoryTable, Convoyer* _convoyer)
     }
     else
     {
-        gettimeofday(&after_time, NULL);
-        _factoryTable->waited_time += before_time.tv_usec - after_time.tv_usec;
-
+        printf("FactoryTable %d : Impossible de prendre le convoyeur 2\n", _factoryTable->process_code);
         return FACTORYTABLE_FALSE;
     }
 

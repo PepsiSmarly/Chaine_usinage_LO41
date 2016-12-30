@@ -99,7 +99,6 @@ void* factoryTable_Thread(void* args)
             continue;
         }
 
-
         int time_to_process = rand() % FACTORYTABLE_MAX_PROCESS_TIME;
         printf("FactoryTable %d : temps d'usinage => %d secondes\n", arg->factoryTable->process_code, time_to_process);
         sleep(time_to_process);
@@ -119,9 +118,16 @@ void* factoryTable_Thread(void* args)
             continue;
         }
 
+        supervisor_FactoryTableReport(arg->network->supervisor,
+            arg->network->convoyer, FACTORYTABLE_TRUE);
+
+        arg->factoryTable->piece->is_processed = PIECE_PROCESSED;
+
         arg->network->convoyer->loaded_piece = arg->factoryTable->piece;
         arg->factoryTable->piece = NULL;
         convoyer_Free(arg->network->convoyer);
+
+        robot_WakeUp(arg->network->robot_unloader, ROBOT_SUCCESS);
     }
 
     pthread_exit(0);
@@ -183,7 +189,9 @@ void* robot_loader_Thread(void* args)
 void* robot_unloader_Thread(void* args)
 {
     Robot_Args* arg = (Robot_Args*)args;
-    double waited_time = 0;
+    double waited_time_start = 0;
+    double waited_time_end = 0;
+    double waited_time_total = 0;
 
     while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
@@ -195,19 +203,21 @@ void* robot_unloader_Thread(void* args)
             printf("Robot Unloader : Travail disponible\n");
 
             while(arg->network->convoyer->position != ROBOT_UNLOADER_POS
-                && waited_time < ROBOT_UNLOAD_TIMEOUT)
+                && waited_time_total < ROBOT_UNLOAD_TIMEOUT)
             {
-                waited_time += (clock() / CLOCKS_PER_SEC);
+                waited_time_start = clock();
+                waited_time_end = clock();
+                waited_time_total += ((waited_time_end - waited_time_start) / CLOCKS_PER_SEC);
             }
 
-            if(waited_time >= ROBOT_UNLOAD_TIMEOUT)
+            if(waited_time_total >= ROBOT_UNLOAD_TIMEOUT)
             {
                 supervisor_RobotReport(arg->network->supervisor, ROBOT_FAIL);
                 continue;
             }
 
             int result = convoyer_Use(arg->network->convoyer,
-                ROBOT_UNLOAD_TIMEOUT - waited_time);
+                ROBOT_UNLOAD_TIMEOUT - waited_time_total);
             if(result == CONVOYER_FAIL)
             {
                 supervisor_RobotReport(arg->network->supervisor, ROBOT_FAIL);
@@ -227,7 +237,7 @@ void* robot_unloader_Thread(void* args)
             arg->robot->piece = NULL;
 
             convoyer_Free(arg->network->convoyer);
-            waited_time = 0;
+            waited_time_total = 0;
         }
 
     }
@@ -260,12 +270,14 @@ void* supervisor_Thread(void* args)
             else
             {
                 arg->supervisor->entering_piece = NULL;
+                printf("Superviseur : Succès chargement\n");
             }
         }
         sem_post(&arg->supervisor->padlock_piece);
 
         if(arg->supervisor->sys_state == ERROR)
         {
+            printf("Superviseur : ERROR\n");
             arg->supervisor->is_system_running = SYSTEM_NOT_RUNNING;
         }
     }
@@ -292,8 +304,8 @@ void* convoyer_Thread(void* args)
 
     while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
-        printf("Convoyeur : Pas de pièce\n");
-        fflush(stdout);
+        // printf("Convoyeur : Pas de pièce\n");
+        // fflush(stdout);
         if(arg->convoyer->loaded_piece != NULL)
         {
             printf("Convoyeur : Position de la pièce sur le convoyeur : %d\n",

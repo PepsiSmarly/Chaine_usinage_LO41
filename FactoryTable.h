@@ -56,7 +56,7 @@
 /**
  * Temps maximum possible de l'usinage d'une pièce en secondes
  */
-#define FACTORYTABLE_MAX_PROCESS_TIME 600
+#define FACTORYTABLE_MAX_PROCESS_TIME 60
 
 #include <stdlib.h>
 #include <pthread.h>
