@@ -70,6 +70,9 @@ int main(int argc, char const *argv[])
      * Mise en place des signaux !
      */
      signal(SIGINT, exit_func);
+     signal(SIGSTOP, exit_func);
+     signal(SIGQUIT, exit_func);
+     signal(SIGTSTP, exit_func);
 
     /**
      * Initialisation de tous les éléments
