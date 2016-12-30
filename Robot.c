@@ -34,6 +34,7 @@ int robot_LoadConvoyer(Robot* _robot, Convoyer* _convoyer)
         return ROBOT_FAIL;
     }
 
+    printf("Robot : Chargement pièce sur le convoyeur !\n");
     _convoyer->loaded_piece = _robot->piece;
     _convoyer->position = ROBOT_LOADER_POS;
     convoyer_Free(_convoyer);
@@ -68,7 +69,7 @@ void robot_WakeUp(Robot* _robot, int _work_to_perform)
 {
     pthread_mutex_lock(&_robot->padlock);
     pthread_cond_signal(&_robot->work_available);
-    printf("Robot : Réveil\n");
+    printf("Robot : Travail disponible !\n");
     _robot->work_to_perform = _work_to_perform;
     pthread_mutex_unlock(&_robot->padlock);
 }

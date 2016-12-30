@@ -82,6 +82,7 @@ void* factoryTable_Thread(void* args)
     while (arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         int result = factoryTable_EnteringSleep(arg->factoryTable);
+        printf("FactoryTable %d : Réveil, code => %d\n", arg->factoryTable->process_code, result);
         if(result == FACTORYTABLE_FALSE)
         {
             supervisor_FactoryTableReport(arg->network->supervisor,
@@ -97,6 +98,7 @@ void* factoryTable_Thread(void* args)
                 arg->network->convoyer, FACTORYTABLE_FALSE);
             continue;
         }
+
 
         int time_to_process = rand() % FACTORYTABLE_MAX_PROCESS_TIME;
         printf("FactoryTable %d : temps d'usinage => %d secondes\n", arg->factoryTable->process_code, time_to_process);
@@ -183,7 +185,7 @@ void* robot_unloader_Thread(void* args)
     Robot_Args* arg = (Robot_Args*)args;
     double waited_time = 0;
 
-    while(arg->network->supervisor->is_system_running)
+    while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         robot_WaitWork(arg->robot);
         printf("Robot Unloader : Réveil\n");
@@ -291,6 +293,7 @@ void* convoyer_Thread(void* args)
     while(arg->network->supervisor->is_system_running == SYSTEM_RUNNING)
     {
         printf("Convoyeur : Pas de pièce\n");
+        fflush(stdout);
         if(arg->convoyer->loaded_piece != NULL)
         {
             printf("Convoyeur : Position de la pièce sur le convoyeur : %d\n",

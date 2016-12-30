@@ -31,6 +31,7 @@ void supervisor_Destroy(Supervisor* _supervisor)
 int supervisor_AppendPiece(Supervisor* _supervisor, Piece* _piece, Network* _network)
 {
     int result = supervisor_DetermineFactoryTable(_supervisor, _piece, _network);
+    printf("Supervisor : Table d'usinage déterminée : %d !\n", _supervisor->last_target->process_code);
 
     if(result == SUPERVISOR_SUCCESS)
     {
@@ -64,6 +65,7 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
 {
     int code = _piece->process_code;
 
+    printf("Superviseur : Table d'usinage en cours de détermination\n");
     sem_wait(&_supervisor->padlock_lt);
     switch (code) {
         case FACTORY_PROCESS_CODE_1:
@@ -88,6 +90,7 @@ int supervisor_DetermineFactoryTable(Supervisor* _supervisor, Piece* _piece, Net
         }
     }
     sem_post(&_supervisor->padlock_lt);
+    printf("Superviseur : Détermination de table d'usinage terminée\n");
     return SUPERVISOR_SUCCESS;
 }
 

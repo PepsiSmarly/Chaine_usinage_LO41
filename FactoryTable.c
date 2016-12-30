@@ -53,13 +53,15 @@ int factoryTable_LoadPieceOnConvoyer(FactoryTable* _factoryTable, Convoyer* _con
 int factoryTable_EnteringSleep(FactoryTable* _factoryTable)
 {
     pthread_mutex_lock(&_factoryTable->padlock);
-    if(_factoryTable->is_in_process == FACTORYTABLE_TRUE)
+    if(_factoryTable->is_in_process == FACTORYTABLE_FALSE)
     {
+        printf("FactoryTable %d : Mise en attente\n", _factoryTable->process_code);
         pthread_cond_wait(&_factoryTable->is_piece_append, &_factoryTable->padlock);
 
         return FACTORYTABLE_TRUE;
     }
 
+    printf("FactoryTable %d : Ne peut être mis en attente...\n", _factoryTable->process_code);
     pthread_mutex_unlock(&_factoryTable->padlock);
     return FACTORYTABLE_FALSE;
 }
