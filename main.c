@@ -9,6 +9,7 @@
 
 #include <pthread.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include "Config.h"
 #include "Supervisor.h"
@@ -18,6 +19,7 @@
 #include "ThreadMethods.h"
 
 void clean_up();
+void exit_func(int sig);
 
 /**
  * Ce qui permet de lire le fichier de config
@@ -64,6 +66,11 @@ pthread_t thread_robot_unloader;
 
 int main(int argc, char const *argv[])
 {
+    /**
+     * Mise en place des signaux !
+     */
+     signal(SIGINT, exit_func);
+
     /**
      * Initialisation de tous les éléments
      */
@@ -247,4 +254,21 @@ void clean_up()
     printf("---------- Fin suppression des Objets ----------\n\n");
 
     piece_Destroy(p);
+}
+
+void exit_func(int sig)
+{
+    convoyer->loaded_piece = NULL;
+    supervisor->is_system_running = SYSTEM_NOT_RUNNING;
+
+    pthread_kill(thread_supervisor, SIGKILL);
+    pthread_kill(thread_convoyer, SIGKILL);
+
+    pthread_kill(thread_tables_1, SIGKILL);
+    pthread_kill(thread_tables_2, SIGKILL);
+    pthread_kill(thread_tables_3, SIGKILL);
+
+    pthread_kill(thread_robot_loader, SIGKILL);
+    pthread_kill(thread_robot_unloader, SIGKILL);
+    signal(SIGINT, exit_func);
 }

@@ -237,6 +237,7 @@ void* robot_unloader_Thread(void* args)
             arg->robot->piece = NULL;
 
             convoyer_Free(arg->network->convoyer);
+            printf("Robot Unloader : Déchargement terminé\n");
             waited_time_total = 0;
         }
 
